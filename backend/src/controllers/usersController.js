@@ -2,13 +2,58 @@ const User = require('../models/User');
 const Joi = require('joi');
 const validator = require('../validations/Validator');
 
+const cekRegister = {
+    username: Joi.string().external(async (username)=>{
+        // Cek Username Unique
+        const users = await User.findOne({username: username});
+        if (users.length > 0) return res.status(400).json({message: "Username telah dipakai!"})
+    }).required(),
+    password: Joi.string().required(),
+    conf_pass: Joi.any().valid(Joi.ref('password')).required(),
+    display_name: Joi.string().required(),
+    email: Joi.string().email().external(async (email)=>{
+        // Cek Username Unique
+        const users = await User.findOne({email: email});
+        if (users.length > 0) return res.status(400).json({message: "Email telah dipakai!"})
+    }).required(),
+    no_telp: Joi.string().required(),
+    role: Joi.string().required(),
+}
+async function registerUser(req, res) {
+    const data = req.body;
+
+    // Validation Joi
+    const validation = await validator(cekRegister, data)
+    if (validation.message)
+        return res.status(400).json({message: validation.message.replace("\"", "").replace("\"", "")})
+
+    // Cek Username Unique
+    const users = await User.findAll({username: data.username});
+    if (users.length > 0) return res.status(400).json({message: "Username telah dipakai!"})
+
+    const newUser = await User.create({
+        username: data.username,
+        password: data.password,
+        display_name: data.display_name,
+        no_telp: data.no_telp,
+        role: data.role,
+        status: 1
+    })
+
+    return res.status(201).json({message: "User berhasil terdaftar", data: newUser})
+}
+
+async function loginUser(req, res) {
+
+}
+
 async function fetchUser(req, res) {
     // const user = await User.findAll();
     return res.status(200).json("user");
 }
 
 module.exports = {
-    fetchUser
+    registerUser, loginUser ,fetchUser
 }
 
 // const addUserSchema = {

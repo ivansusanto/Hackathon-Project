@@ -1,42 +1,39 @@
 const sequelize = require("../config/db.config");
 const { Model, DataTypes } = require("sequelize");
 
-class User extends Model {}
+class Events extends Model {}
 
-User.init({
+Events.init({
     id: {
         type: DataTypes.INTEGER(11),
         primaryKey: true,
         allowNull: false,
         autoIncrement: true
     },
-    username: {
+    name: {
         type: DataTypes.STRING(255)
     },
-    password: {
+    start_date: {
+        type: DataTypes.DATE
+    },
+    end_date: {
+        type: DataTypes.DATE
+    },
+    foto: {
         type: DataTypes.STRING(255)
     },
-    display_name: {
-        type: DataTypes.STRING(255)
-    },
-    email: {
-        type: DataTypes.STRING(255)
-    },
-    no_telp: {
-        type: DataTypes.STRING(15)
-    },
-    role: {
-        type: DataTypes.INTEGER(1)
+    wisata_id: {
+        type: DataTypes.INTEGER(11)
     },
     status: {
         type: DataTypes.INTEGER(1)
     }
 }, {
     sequelize,
-    modelName: "User",
-    tableName: "users",
+    modelName: "Event",
+    tableName: "events",
     timestamps: false,
     underscored: true
 });
 
-module.exports = User;
+module.exports = Events;
