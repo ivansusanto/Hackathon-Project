@@ -5,16 +5,16 @@ const validator = require('../validations/Validator');
 const cekRegister = {
     username: Joi.string().external(async (username)=>{
         // Cek Username Unique
-        const users = await User.findOne({username: username});
-        if (users.length > 0) return res.status(400).json({message: "Username telah dipakai!"})
+        const users = await User.findOne({where: {username: username}});
+        if (users) throw new Error("Username telah dipakai!")
     }).required(),
     password: Joi.string().required(),
     conf_pass: Joi.any().valid(Joi.ref('password')).required(),
     display_name: Joi.string().required(),
     email: Joi.string().email().external(async (email)=>{
         // Cek Username Unique
-        const users = await User.findOne({email: email});
-        if (users.length > 0) return res.status(400).json({message: "Email telah dipakai!"})
+        const users = await User.findOne({where: {email: email}});
+        if (users) throw new Error("Email telah dipakai!")
     }).required(),
     no_telp: Joi.string().required(),
     role: Joi.string().required(),
@@ -27,16 +27,13 @@ async function registerUser(req, res) {
     if (validation.message)
         return res.status(400).json({message: validation.message.replace("\"", "").replace("\"", "")})
 
-    // Cek Username Unique
-    const users = await User.findAll({username: data.username});
-    if (users.length > 0) return res.status(400).json({message: "Username telah dipakai!"})
-
     const newUser = await User.create({
         username: data.username,
         password: data.password,
         display_name: data.display_name,
         no_telp: data.no_telp,
         role: data.role,
+        email: data.email,
         status: 1
     })
 
