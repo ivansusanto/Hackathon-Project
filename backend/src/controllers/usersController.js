@@ -1,6 +1,9 @@
 const User = require('../models/User');
 const Joi = require('joi');
 const validator = require('../validations/Validator');
+const generateHashedPassword = require('../utils/Bcrypt');
+const generateToken = require('../utils/JWT');
+const bcrypt = require('bcrypt');
 
 const cekRegister = {
     username: Joi.string().external(async (username)=>{
@@ -20,6 +23,14 @@ const cekRegister = {
     role: Joi.string().required(),
 }
 
+const cekLogin = {
+    username: Joi.string().required().external(async (username) => {
+        const users = await User.findOne({where: {username: username}});
+        if (!users) throw new Error("Username tidak ditemukan!")
+    }),
+    password: Joi.string().required()
+}
+
 
 
 async function registerUser(req, res) {
@@ -32,7 +43,7 @@ async function registerUser(req, res) {
 
     const newUser = await User.create({
         username: data.username,
-        password: data.password,
+        password: generateHashedPassword(data.password),
         display_name: data.display_name,
         no_telp: data.no_telp,
         role: data.role,
@@ -44,7 +55,7 @@ async function registerUser(req, res) {
 }
 
 async function loginUser(req, res) {
-    const data = req.body
+    const data = req.body;
 
     // Validation Joi
     const validation = await validator(cekLogin, data)
@@ -52,8 +63,14 @@ async function loginUser(req, res) {
         return res.status(400).json({message: validation.message.replace("\"", "").replace("\"", "")})
 
     const users = await User.findOne({where: {username: data.username}})
-    
-    if (users.password !== data.password) return res.status(400).json({message: "Password salah!"})
+
+    if (!bcrypt.compareSync(data.password, users.password)) return res.status(400).json({message: "Password salah!"});
+
+    const token = generateToken({
+        username: users.username
+    }, 3600)
+
+    return res.status(200).json({message: "berhasil login", token: token});
 }
 
 async function fetchUser(req, res) {
