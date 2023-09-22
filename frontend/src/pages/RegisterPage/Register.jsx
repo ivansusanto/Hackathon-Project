@@ -114,6 +114,8 @@ function Login (){
                   variant="outlined" 
                   sx={{width: "320px"}}
                   onChange={passwordHandler}
+                  autoComplete="current-password"
+                  type="password"
                   />
 
                 </div>
@@ -124,6 +126,8 @@ function Login (){
                   variant="outlined" 
                   sx={{width: "320px"}}
                   onChange={confirmPasswordHandler}
+                  autoComplete="current-password"
+                  type="password"
 
                   />
 
@@ -132,7 +136,7 @@ function Login (){
               <div className="mt-5 flex justify-between">
                 <div className="flex">
                   <TextField 
-                  id="outlined-basic2" 
+                  id="outlined-basic3" 
                   label="Nomor telepon" 
                   variant="outlined" 
                   sx={{width: "320px"}}
@@ -143,7 +147,7 @@ function Login (){
                 </div>
                 <div className="flex">
                   <TextField 
-                  id="outlined-basic5" 
+                  id="outlined-basic4" 
                   label="Nama Pengguna" 
                   variant="outlined" 
                   sx={{width: "320px"}}
