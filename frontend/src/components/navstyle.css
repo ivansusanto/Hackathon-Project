@@ -7,20 +7,20 @@
   }
   
   .navbar .navbar-wrapper {
-    height: 150px;
+    height: 120px;
     overflow-x: hidden;
     width: 1920px;
   }
   
   .navbar .overlap-group-wrapper {
-    height: 150px;
+    height: 120px;
     width: 1930px;
   }
   
   .navbar .overlap-group {
     background-image: url(./bg-navbar.svg);
     background-size: 100% 100%;
-    height: 150px;
+    height: 120px;
     position: relative;
     width: 1920px;
   }
@@ -28,7 +28,7 @@
   .navbar .text-wrapper {
     color: #0f2f4e;
     font-family: "Montserrat-Bold", Helvetica;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 700;
     left: 1054px;
     letter-spacing: 0;
@@ -41,7 +41,7 @@
   .navbar .div {
     color: #0f2f4e;
     font-family: "Montserrat-Bold", Helvetica;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 700;
     left: 1251px;
     letter-spacing: 0;
@@ -54,9 +54,9 @@
   .navbar .text-wrapper-2 {
     color: #0f2f4e;
     font-family: "Montserrat-Bold", Helvetica;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 700;
-    left: 1379px;
+    left: 1400px;
     letter-spacing: 0;
     line-height: normal;
     position: absolute;
@@ -68,7 +68,7 @@
   .navbar .text-wrapper-3 {
     color: #0f2f4e;
     font-family: "Montserrat-Bold", Helvetica;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 700;
     left: 1555px;
     letter-spacing: 0;
@@ -80,12 +80,12 @@
   }
   
   .navbar .hati-kanan {
-    height: 111px;
+    height: 92.5px;
     left: 87px;
     object-fit: cover;
     position: absolute;
     top: 15px;
-    width: 414px;
+    width: 345px;
   }
   
   .navbar .overlap {
@@ -101,13 +101,13 @@
   .navbar .text-wrapper-4 {
     color: #ffffff;
     font-family: "Montserrat-Bold", Helvetica;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 700;
-    left: 40px;
+    left: 35px;
     letter-spacing: 0;
     line-height: 16.7px;
     position: absolute;
-    top: 13px;
+    top: 14px;
     white-space: nowrap;
   }
   

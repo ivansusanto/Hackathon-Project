@@ -8,10 +8,9 @@ function Navbar (){
           <div className="navbar-wrapper">
             <div className="overlap-group-wrapper">
               <div className="overlap-group">
-                <div className="text-wrapper">Beranda</div>
-                <div className="div">Tour</div>
-                <div className="text-wrapper-2">Festival</div>
-                <div className="text-wrapper-3">UMKM</div>
+                <div className="div">Beranda</div>
+                <div className="text-wrapper-2">Wisata</div>
+                <div className="text-wrapper-3">Acara</div>
                 <img className="hati-kanan" alt="Hati kanan" src="/img/Logo-lebar.png" />
                 <div className="overlap">
                   <div className="text-wrapper-4">Sign in</div>
