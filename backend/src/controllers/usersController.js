@@ -5,7 +5,7 @@ const validator = require('../validations/Validator');
 const cekRegister = {
     username: Joi.string().external(async (username)=>{
         // Cek Username Unique
-        const users = await User.findAll({username: username});
+        const users = await User.findOne({username: username});
         if (users.length > 0) return res.status(400).json({message: "Username telah dipakai!"})
     }).required(),
     password: Joi.string().required(),
@@ -13,7 +13,7 @@ const cekRegister = {
     display_name: Joi.string().required(),
     email: Joi.string().email().external(async (email)=>{
         // Cek Username Unique
-        const users = await User.findAll({email: email});
+        const users = await User.findOne({email: email});
         if (users.length > 0) return res.status(400).json({message: "Email telah dipakai!"})
     }).required(),
     no_telp: Joi.string().required(),
