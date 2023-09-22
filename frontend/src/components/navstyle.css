@@ -1,113 +1,98 @@
 .navbar {
-    background-color: transparent;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-  }
-  
-  .navbar .navbar-wrapper {
-    height: 150px;
-    overflow-x: hidden;
-    width: 1920px;
-  }
-  
-  .navbar .overlap-group-wrapper {
-    height: 150px;
-    width: 1930px;
-  }
-  
-  .navbar .overlap-group {
-    background-image: url(./bg-navbar.svg);
-    background-size: 100% 100%;
-    height: 150px;
-    position: relative;
-    width: 1920px;
-  }
-  
-  .navbar .text-wrapper {
-    color: #0f2f4e;
-    font-family: "Montserrat-Bold", Helvetica;
-    font-size: 20px;
-    font-weight: 700;
-    left: 1054px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 56px;
-    white-space: nowrap;
-  }
-  
-  .navbar .div {
-    color: #0f2f4e;
-    font-family: "Montserrat-Bold", Helvetica;
-    font-size: 20px;
-    font-weight: 700;
-    left: 1251px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 56px;
-    white-space: nowrap;
-  }
-  
-  .navbar .text-wrapper-2 {
-    color: #0f2f4e;
-    font-family: "Montserrat-Bold", Helvetica;
-    font-size: 20px;
-    font-weight: 700;
-    left: 1379px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    text-align: center;
-    top: 56px;
-    width: 129px;
-  }
-  
-  .navbar .text-wrapper-3 {
-    color: #0f2f4e;
-    font-family: "Montserrat-Bold", Helvetica;
-    font-size: 20px;
-    font-weight: 700;
-    left: 1555px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    text-align: center;
-    top: 56px;
-    width: 125px;
-  }
-  
-  .navbar .hati-kanan {
-    height: 111px;
-    left: 87px;
-    object-fit: cover;
-    position: absolute;
-    top: 15px;
-    width: 414px;
-  }
-  
-  .navbar .overlap {
-    background-color: #31737c;
-    border-radius: 15px;
-    height: 47px;
-    left: 1720px;
-    position: absolute;
-    top: 44px;
-    width: 136px;
-  }
-  
-  .navbar .text-wrapper-4 {
-    color: #ffffff;
-    font-family: "Montserrat-Bold", Helvetica;
-    font-size: 15px;
-    font-weight: 700;
-    left: 40px;
-    letter-spacing: 0;
-    line-height: 16.7px;
-    position: absolute;
-    top: 13px;
-    white-space: nowrap;
-  }
-  
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.navbar .navbar-wrapper {
+  height: 134px;
+  overflow-x: hidden;
+  width: 1920px;
+}
+
+.navbar .overlap-group-wrapper {
+  height: 134px;
+  width: 1928px;
+}
+
+.navbar .overlap-group {
+  background-image: url(./bg-navbar.svg);
+  background-size: 100% 100%;
+  height: 134px;
+  position: relative;
+  width: 1920px;
+}
+
+.navbar .text-wrapper {
+  color: #0f2f4e;
+  font-family: "Montserrat-Bold", Helvetica;
+  font-size: 20px;
+  font-weight: 700;
+  left: 1236px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 59px;
+  white-space: nowrap;
+}
+
+.navbar .div {
+  color: #0f2f4e;
+  font-family: "Montserrat-Bold", Helvetica;
+  font-size: 20px;
+  font-weight: 700;
+  left: 1420px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 59px;
+  white-space: nowrap;
+}
+
+.navbar .text-wrapper-2 {
+  color: #0f2f4e;
+  font-family: "Montserrat-Bold", Helvetica;
+  font-size: 20px;
+  font-weight: 700;
+  left: 1570px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 61px;
+  width: 84px;
+}
+
+.navbar .hati-kanan {
+  height: 90px;
+  left: 75px;
+  object-fit: cover;
+  position: absolute;
+  top: 16px;
+  width: 334px;
+}
+
+.navbar .overlap {
+  background-color: #31737c;
+  border-radius: 15px;
+  height: 47px;
+  left: 1703px;
+  position: absolute;
+  top: 51px;
+  width: 136px;
+}
+
+.navbar .text-wrapper-3 {
+  color: #ffffff;
+  font-family: "Montserrat-Bold", Helvetica;
+  font-size: 15px;
+  font-weight: 700;
+  left: 40px;
+  letter-spacing: 0;
+  line-height: 16.7px;
+  position: absolute;
+  top: 13px;
+  white-space: nowrap;
+}
