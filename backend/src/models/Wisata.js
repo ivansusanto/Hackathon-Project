@@ -22,6 +22,9 @@ Wisata.init({
     longitude: {
         type: DataTypes.DOUBLE
     },
+    desc: {
+        type: DataTypes.TEXT
+    },
     jenis: {
         type: DataTypes.INTEGER(1)
     },

@@ -13,6 +13,9 @@ Events.init({
     name: {
         type: DataTypes.STRING(255)
     },
+    desc: {
+        type: DataTypes.TEXT
+    },
     start_date: {
         type: DataTypes.DATE
     },
