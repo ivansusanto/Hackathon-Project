@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const env = require("./env.config");
 
-const db_name = "db_test";
+const db_name = env("DB_NAME");
 const user = env("DB_USER");
 const password = env("DB_PASSWORD");
 const host = env("DB_HOST");
