@@ -3,11 +3,20 @@ const Joi = require('joi');
 const validator = require('../validations/Validator');
 
 const cekRegister = {
-    username: Joi.string().required(),
+    username: Joi.string().external(async (username)=>{
+        // Cek Username Unique
+        const users = await User.findAll({username: username});
+        if (users.length > 0) return res.status(400).json({message: "Username telah dipakai!"})
+    }).required(),
     password: Joi.string().required(),
     conf_pass: Joi.any().valid(Joi.ref('password')).required(),
     display_name: Joi.string().required(),
-    no_telp: Joi.number().integer().required(),
+    email: Joi.string().email().external(async (email)=>{
+        // Cek Username Unique
+        const users = await User.findAll({email: email});
+        if (users.length > 0) return res.status(400).json({message: "Email telah dipakai!"})
+    }).required(),
+    no_telp: Joi.string().required(),
     role: Joi.string().required(),
 }
 async function registerUser(req, res) {
@@ -22,6 +31,16 @@ async function registerUser(req, res) {
     const users = await User.findAll({username: data.username});
     if (users.length > 0) return res.status(400).json({message: "Username telah dipakai!"})
 
+    const newUser = await User.create({
+        username: data.username,
+        password: data.password,
+        display_name: data.display_name,
+        no_telp: data.no_telp,
+        role: data.role,
+        status: 1
+    })
+
+    return res.status(201).json({message: "User berhasil terdaftar", data: newUser})
 }
 
 async function loginUser(req, res) {

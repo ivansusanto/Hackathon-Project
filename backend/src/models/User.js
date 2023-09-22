@@ -19,6 +19,9 @@ User.init({
     display_name: {
         type: DataTypes.STRING(255)
     },
+    email: {
+        type: DataTypes.STRING(255)
+    },
     no_telp: {
         type: DataTypes.STRING(15)
     },
