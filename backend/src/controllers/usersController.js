@@ -19,6 +19,9 @@ const cekRegister = {
     no_telp: Joi.string().required(),
     role: Joi.string().required(),
 }
+
+
+
 async function registerUser(req, res) {
     const data = req.body;
 
@@ -41,7 +44,16 @@ async function registerUser(req, res) {
 }
 
 async function loginUser(req, res) {
+    const data = req.body
 
+    // Validation Joi
+    const validation = await validator(cekLogin, data)
+    if (validation.message)
+        return res.status(400).json({message: validation.message.replace("\"", "").replace("\"", "")})
+
+    const users = await User.findOne({where: {username: data.username}})
+    
+    if (users.password !== data.password) return res.status(400).json({message: "Password salah!"})
 }
 
 async function fetchUser(req, res) {
