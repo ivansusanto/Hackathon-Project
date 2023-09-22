@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const Wisata = require('../models/Wisata');
+const Event = require('../models/Event');
 const { Op, QueryTypes } = require('sequelize')
 const Joi = require('joi');
 const validator = require('../validations/Validator');
@@ -9,9 +9,9 @@ const cekEvent = {
     start_date: Joi.date().required(),
     end_date: Joi.date().required(),
     foto: Joi.allow(),
-    wisata_id: Joi.number().required().external(async (id) => {
-        const wisata = await Wisata.findByPk(id);
-        if (!wisata) throw new Error("Wisata tidak ditemukan");
+    event_id: Joi.number().required().external(async (id) => {
+        const event = await event.findByPk(id);
+        if (!event) throw new Error("event tidak ditemukan");
     })
 }
 
@@ -28,7 +28,8 @@ async function createEvent(req, res) {
         start_date: data.start_date,
         end_date: data.end_date,
         foto: null,
-        wisata_id: data.wisata_id,
+        event_id: data.event_id,
+        desc: data.desc,
         status: 1,
     })
 
@@ -37,49 +38,49 @@ async function createEvent(req, res) {
 
 async function updateEvent(req, res) {
     const { id_event } = req.params
-    const { name, start_date, end_date, longitude } = req.body
+    const { name, start_date, end_date, desc } = req.body
 
-    const wisata = await Wisata.findByPk(id_wisata)
-    if (wisata == null) return res.status(404).json({message: "Wisata tidak ditemukan"})
+    const event = await Event.findByPk(id_event)
+    if (event == null) return res.status(404).json({message: "Event tidak ditemukan"})
 
-    wisata.update({
+    event.update({
         name: name,
-        alamat: alamat,
-        latitude: latitude,
-        longitude: longitude,
+        desc: desc,
+        start_date: start_date,
+        end_date: end_date
     })
 
-    return res.status(200).json({message: "Wisata berhasil diubah!"})
+    return res.status(200).json({message: "Event berhasil diubah!"})
 }
 
-async function deleteWisata(req, res) {
-    const { id_wisata } = req.params
+async function deleteEvent(req, res) {
+    const { id_event } = req.params
     
-    const wisata = await Wisata.findByPk(id_wisata)
-    if (wisata == null) return res.status(404).json({message: "Wisata tidak ditemukan"})
+    const event = await Event.findByPk(id_event)
+    if (event == null) return res.status(404).json({message: "Event tidak ditemukan"})
 
-    wisata.update({ status: 0 })
+    event.update({ status: 0 })
 
-    return res.status(200).json({message: "Wisata berhasil dihapus!"})
+    return res.status(200).json({message: "Event berhasil dihapus!"})
 }
 
-async function fetchWisata(req, res) {
+async function fetchEvent(req, res) {
     const { name } = req.query
 
-    const wisatas = await Wisata.findAll({ where: { name: {[Op.like]: `%${name}%`}}})
+    const events = await Event.findAll({ where: { name: {[Op.like]: `%${name}%`}}})
 
-    return res.status(200).json({data: wisatas})
+    return res.status(200).json({data: events})
 }
 
-async function getWisata(req, res) {
-    const { id_wisata } = req.params
+async function getEvent(req, res) {
+    const { id_event } = req.params
 
-    const wisata = await Wisata.findByPk(id_wisata)
-    if (wisata == null) return res.status(404).json({message: "Wisata tidak ditemukan"})
+    const event = await Event.findByPk(id_event)
+    if (event == null) return res.status(404).json({message: "Event tidak ditemukan"})
 
-    return res.status(200).json({data: wisata})
+    return res.status(200).json({data: event})
 }
 
 module.exports = {
-    createEvent, updateWisata, deleteWisata, fetchWisata, getWisata
+    createEvent, updateEvent, deleteEvent, fetchEvent, getEvent
 }
