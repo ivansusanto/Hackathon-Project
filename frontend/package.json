@@ -18,7 +18,8 @@
     "react": "^18.2.0",
     "react-active-menu": "^0.0.14",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0"
+    "react-router-dom": "^6.16.0",
+    "react-scroll-parallax": "^3.4.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
