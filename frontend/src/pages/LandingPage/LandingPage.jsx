@@ -29,7 +29,7 @@ function LandingPage(){
                 elemen grafis atau presentasi visual seperti font, tipografi, <br />
                 dan tata letak.
               </p>
-              <div className="div-wrapper">
+              <div className="div-wrapper btn p-0">
                 <div className="text-wrapper">More Info</div>
               </div>
             </div>

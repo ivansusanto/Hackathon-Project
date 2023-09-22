@@ -67,7 +67,8 @@ async function loginUser(req, res) {
     if (!bcrypt.compareSync(data.password, users.password)) return res.status(400).json({message: "Password salah!"});
 
     const token = generateToken({
-        username: users.username
+        username: users.username,
+        display_name: users.display_name
     }, 3600)
 
     return res.status(200).json({message: "berhasil login", token: token});

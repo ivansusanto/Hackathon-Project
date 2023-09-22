@@ -42,7 +42,11 @@ function Login (){
         password: password
       }
       http.post("users/login", data).then((res) => {
-        console.log(res)
+        if(res.message != "berhasil login"){
+          alert("Username atau password salah")
+        }else{
+          sessionStorage.setItem("token", res.message.token)
+        }
       })
     }
   }
