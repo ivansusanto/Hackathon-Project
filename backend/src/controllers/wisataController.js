@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const Wisata = require('../models/Wisata');
+const { Op, QueryTypes } = require('sequelize')
 const Joi = require('joi');
 const validator = require('../validations/Validator');
 
@@ -9,14 +10,8 @@ const cekWisata = {
     latitude: Joi.number().required(),
     longitude: Joi.number().required(),
     jenis: Joi.number().integer().required(),
-    user_id: Joi.number().integer().external(async (user_id)=>{
-        const user = await User.findByPk(user_id);
-        if (user == null) throw new Error("User tidak ditemukan!")
-    }).required(),
     foto: Joi.allow(),
 }
-
-
 
 async function createWisata(req, res) {
     const data = req.body;
@@ -33,7 +28,7 @@ async function createWisata(req, res) {
         longitude: data.longitude,
         jenis: data.jenis,
         foto: null,
-        user_id: data.user_id,
+        user_id: req.user,
         status: 1,
     })
 
@@ -41,19 +36,48 @@ async function createWisata(req, res) {
 }
 
 async function updateWisata(req, res) {
+    const { id_wisata } = req.params
+    const { name, alamat, latitude, longitude } = req.body
 
+    const wisata = await Wisata.findByPk(id_wisata)
+    if (wisata == null) return res.status(404).json({message: "Wisata tidak ditemukan"})
+
+    wisata.update({
+        name: name,
+        alamat: alamat,
+        latitude: latitude,
+        longitude: longitude,
+    })
+
+    return res.status(200).json({message: "Wisata berhasil diubah!"})
 }
 
 async function deleteWisata(req, res) {
+    const { id_wisata } = req.params
     
+    const wisata = await Wisata.findByPk(id_wisata)
+    if (wisata == null) return res.status(404).json({message: "Wisata tidak ditemukan"})
+
+    wisata.update({ status: 0 })
+
+    return res.status(200).json({message: "Wisata berhasil dihapus!"})
 }
 
 async function fetchWisata(req, res) {
-    
+    const { name } = req.query
+
+    const wisatas = await Wisata.findAll({ where: { name: {[Op.like]: `%${name}%`}}})
+
+    return res.status(200).json({data: wisatas})
 }
 
 async function getWisata(req, res) {
-    
+    const { id_wisata } = req.params
+
+    const wisata = await Wisata.findByPk(id_wisata)
+    if (wisata == null) return res.status(404).json({message: "Wisata tidak ditemukan"})
+
+    return res.status(200).json({data: wisata})
 }
 
 module.exports = {
