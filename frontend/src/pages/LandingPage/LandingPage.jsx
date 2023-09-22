@@ -3,40 +3,162 @@ import jumbo from "/img/image 3.png"
 import rectangle from "/img/Rectangle 20.png"
 import arrow from "/img/Arrow 1.png"
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
+import React from "react";
+import "./style.css";
 
 function LandingPage(){
 
   return(
     <>
-      <div style={{height: "4000px"}}>
-        <Nav />
-        <ParallaxProvider>
-          <Parallax translateY={["-100px", "10px"]}>
-            <img src={jumbo} alt="" className="absolute z-0 w-screen"/>
-          </Parallax>
-        </ParallaxProvider>
-        <div className="relative jumbotron z-10">
-          <div className="text-white ms-32 mt-96 font-Montserrat">
-            <h1 className=" font-bold text-6xl">WELCOME TO<br />SUMBERGAYAM</h1>
-            <p className=" w-1/2 mt-4 text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut fugit atque necessitatibus ut debitis vel id quis quae cupiditate. Quia dolorem iusto vitae architecto modi aliquid inventore pariatur sapiente deserunt.</p>
-            <button class="btn btn-success mt-12 px-7 text-lg">More Info</button>
+    <div className="home-page">
+      <div className="div">
+        <div className="overlap">
+          <div className="jumbotron">
+            <div className="overlap-group">
+              <div className="WELCOME-TO">
+                WELCOME TO <br />
+                SUMBERGAYAM
+              </div>
+              <p className="lorem-ipsum-atau">
+                Lorem ipsum, atau ringkasnya lipsum, adalah
+                <br />
+                teks standar yang ditempatkan untuk mendemostrasikan
+                <br />
+                elemen grafis atau presentasi visual seperti font, tipografi, <br />
+                dan tata letak.
+              </p>
+              <div className="div-wrapper">
+                <div className="text-wrapper">More Info</div>
+              </div>
+            </div>
           </div>
-          <div className="flex justify-center mt-10">
-            <button className="btn w-20 h-20 border rounded-full">
-              <img src={arrow} alt="" />
-            </button>
+          <div className="frame">
+            <div className="bali-indonasia-wrapper">
+              <div className="text-wrapper-2">lorem, lorem</div>
+            </div>
+            <div className="frame-2">
+              <div className="text-wrapper-2">lorem, lorem</div>
+            </div>
+            <div className="frame-3">
+              <div className="text-wrapper-2">lorem, lorem</div>
+            </div>
+            <div className="frame-4">
+              <div className="text-wrapper-2">Lorem, lorem</div>
+            </div>
+          </div>
+          <div className="frame-5">
+            <div className="text-wrapper-3">Top Vacation Destinations</div>
           </div>
         </div>
-
-        <ParallaxProvider>
-          <Parallax translateY={["380px", "10px"]}>
-            <div className=" bg-slate-500 h-96">
-              
+        <div className="overlap-wrapper">
+          <div className="overlap-2">
+            <p className="p">Our professional advisors can craft your perfect itinerary</p>
+            <p className="plan-your-trip-with">Plan your trip with travel expert</p>
+          </div>
+        </div>
+        <div className="frame-6">
+          <div className="frame-7">
+            <div className="text-wrapper-4">Offers</div>
+          </div>
+          <div className="frame-8">
+            <div className="frame-wrapper">
+              <div className="frame-9">
+                <div className="overlap-group-wrapper">
+                  <div className="overlap-group-2">
+                    <img className="bytesize-heart" alt="Bytesize heart" src="/img/bytesize-heart-2.svg" />
+                    <img className="image" alt="Image" src="/img/image-19-2.png" />
+                  </div>
+                </div>
+                <div className="frame-10">
+                  <div className="frame-10">
+                    <div className="frame-11">
+                      <div className="text-wrapper-5">Domestic Flights</div>
+                      <div className="frame-12">
+                        <div className="frame-13">
+                          <p className="text-wrapper-6">Huge savings on flight with trxvl.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="frame-12">
+                      <p className="text-wrapper-7">Book domestic flights starting @ just ₹1459</p>
+                    </div>
+                  </div>
+                  <div className="frame-14">
+                    <div className="frame-15">
+                      <div className="text-wrapper-8">Book Now</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </Parallax>
-        </ParallaxProvider>
-
+            <div className="frame-16">
+              <div className="frame-9">
+                <div className="frame-17">
+                  <div className="overlap-group-3">
+                    <img className="img" alt="Bytesize heart" src="/img/bytesize-heart-1.svg" />
+                    <img className="image-2" alt="Image" src="/img/image-19-1.png" />
+                  </div>
+                </div>
+                <div className="frame-10">
+                  <div className="frame-10">
+                    <div className="frame-11">
+                      <div className="text-wrapper-5">International Hotels</div>
+                      <div className="frame-12">
+                        <div className="frame-13">
+                          <p className="text-wrapper-6">Enjoy upto 20% off on International Hotels</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="frame-12">
+                      <p className="text-wrapper-7">
+                        Make the most of&nbsp;&nbsp;this deal on your first booking with trxvl.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="frame-14">
+                    <div className="frame-15">
+                      <div className="text-wrapper-8">Book Now</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="frame-18">
+              <div className="frame-9">
+                <div className="frame-19">
+                  <div className="overlap-group-3">
+                    <img className="img" alt="Bytesize heart" src="/img/bytesize-heart.png" />
+                    <img className="image-2" alt="Image" src="/img/image-19.png" />
+                  </div>
+                </div>
+                <div className="frame-10">
+                  <div className="frame-10">
+                    <div className="frame-11">
+                      <div className="text-wrapper-5">Bank Offer</div>
+                      <div className="frame-12">
+                        <div className="frame-13">
+                          <p className="text-wrapper-6">Get upto 30% instant discount</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="frame-12">
+                      <p className="text-wrapper-7">
+                        Get discount on flights, hotels and holiday packages with HDFC bank credit card.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="frame-14">
+                    <div className="frame-15">
+                      <div className="text-wrapper-8">Book Now</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
     </>
   )
 }
