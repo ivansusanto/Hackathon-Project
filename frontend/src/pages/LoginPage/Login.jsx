@@ -76,7 +76,8 @@ function Login (){
                   variant="outlined" 
                   sx={{width: "320px"}}
                   onChange={passwordHandler}
-
+                  autoComplete="current-password"
+                  type="password"
                   />
 
                 </div>
