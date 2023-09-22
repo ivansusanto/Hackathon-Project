@@ -199,36 +199,15 @@
 }
 
 .home-page .overlap-2 {
-  background-image: url(../../../public/img/image-20.png);
   background-size: 100% 100%;
   height: 437px;
   position: relative;
 }
-
-.home-page .p {
-  color: #ffffff;
-  font-family: "Montserrat", Helvetica;
-  font-size: 35.4px;
-  font-weight: 400;
-  left: 89px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 256px;
+.home-page .overlap-2 iframe {
+ width: 2000px;
+ height: 600px;
 }
 
-.home-page .plan-your-trip-with {
-  color: #ffffff;
-  font-family: "Montserrat", Helvetica;
-  font-size: 62px;
-  font-weight: 700;
-  left: 89px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 87px;
-  width: 751px;
-}
 
 .home-page .frame-6 {
   align-items: flex-start;
