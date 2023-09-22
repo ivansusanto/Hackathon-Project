@@ -1,4 +1,5 @@
-import Nav from "../../components/Navbar"
+import Nav from "../../components/Navbar.jsx"
+import Foot from "../../components/Footer.jsx"
 import jumbo from "/img/image 3.png"
 import rectangle from "/img/Rectangle 20.png"
 import arrow from "/img/Arrow 1.png"
@@ -10,6 +11,7 @@ function LandingPage(){
 
   return(
     <>
+    <Nav/>
     <div className="home-page">
       <div className="div">
         <div className="overlap">
@@ -66,7 +68,7 @@ function LandingPage(){
                 <div className="overlap-group-wrapper">
                   <div className="overlap-group-2">
                     <img className="bytesize-heart" alt="Bytesize heart" src="/img/bytesize-heart-2.svg" />
-                    <img className="image" alt="Image" src="/img/image-19-2.png" />
+                    <img className="image" alt="Image" src="/img/image-18.png" />
                   </div>
                 </div>
                 <div className="frame-10">
@@ -159,6 +161,7 @@ function LandingPage(){
         </div>
       </div>
     </div>
+    <Foot/>
     </>
   )
 }

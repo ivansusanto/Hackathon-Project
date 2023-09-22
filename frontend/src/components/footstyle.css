@@ -1,0 +1,94 @@
+.footer {
+    background-color: #dddddddd;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .footer .div {
+    background-color: #dddddddd;
+    height: 271px;
+    position: relative;
+    width: 1920px;
+  }
+  
+  .footer .social {
+    align-items: flex-start;
+    display: inline-flex;
+    gap: 22.14px;
+    left: 1604px;
+    position: absolute;
+    top: 172px;
+  }
+  
+  .footer .icon-instance-node {
+    height: 26.57px !important;
+    position: relative !important;
+    width: 26.57px !important;
+  }
+  
+  .footer .links {
+    align-items: flex-start;
+    display: flex;
+    gap: 166.05px;
+    left: 568px;
+    position: absolute;
+    top: 32px;
+    width: 1015px;
+  }
+  
+  .footer .column {
+    align-items: flex-start;
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 16.61px;
+    position: relative;
+  }
+  
+  .footer .seslendirme-ve-alt {
+    color: var(--gray);
+    font-family: "Montserrat-Regular", Helvetica;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1.11px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .footer .text-wrapper {
+    color: var(--gray);
+    font-family: "Montserrat-Regular", Helvetica;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: normal;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .footer .text-wrapper-2 {
+    color: var(--gray);
+    font-family: "Montserrat-Light", Helvetica;
+    font-size: 20px;
+    font-weight: 300;
+    left: 560px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 227px;
+    white-space: nowrap;
+    width: 200px;
+  }
+  
+  .footer .logo-kecil {
+    height: 158px;
+    left: 121px;
+    object-fit: cover;
+    position: absolute;
+    top: 57px;
+    width: 171px;
+  }  

@@ -287,18 +287,17 @@
   gap: 26.57px;
   position: relative;
   width: 726.21px;
+  height: 228px;
 }
 
 .home-page .overlap-group-wrapper {
   align-self: stretch;
-  background-image: url(../../../public/img/frame-31-2.svg);
-  background-position: 50% 50%;
-  background-size: cover;
   border-radius: 23.23px;
   flex: 1;
   flex-grow: 1;
   overflow: hidden;
-  position: relative;
+  height: 228px;
+
 }
 
 .home-page .overlap-group-2 {
@@ -333,6 +332,7 @@
   flex-direction: column;
   gap: 17.71px;
   position: relative;
+  
 }
 
 .home-page .frame-11 {
