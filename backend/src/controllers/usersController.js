@@ -2,13 +2,39 @@ const User = require('../models/User');
 const Joi = require('joi');
 const validator = require('../validations/Validator');
 
+const cekRegister = {
+    username: Joi.string().required(),
+    password: Joi.string().required(),
+    conf_pass: Joi.any().valid(Joi.ref('password')).required(),
+    display_name: Joi.string().required(),
+    no_telp: Joi.number().integer().required(),
+    role: Joi.string().required(),
+}
+async function registerUser(req, res) {
+    const data = req.body;
+
+    // Validation Joi
+    const validation = await validator(cekRegister, data)
+    if (validation.message)
+        return res.status(400).json({message: validation.message.replace("\"", "").replace("\"", "")})
+
+    // Cek Username Unique
+    const users = await User.findAll({username: data.username});
+    if (users.length > 0) return res.status(400).json({message: "Username telah dipakai!"})
+
+}
+
+async function loginUser(req, res) {
+
+}
+
 async function fetchUser(req, res) {
     // const user = await User.findAll();
     return res.status(200).json("user");
 }
 
 module.exports = {
-    fetchUser
+    registerUser, loginUser ,fetchUser
 }
 
 // const addUserSchema = {
