@@ -2,10 +2,20 @@ import React from "react";
 import Nav from "../../components/Navbar.jsx"
 import Foot from "../../components/Footer.jsx"
 import WisataCard from "../../components/WisataCard.jsx";
-
+import fetch from "../fetch.js"
+import { useEffect, useState } from "react";
 
 function WisataPage () {
-  
+  const {http} = fetch()
+  const [wisatas, setWisatas] = useState([])
+
+  useEffect(() => {
+    http.get("wisata").then((res) => {
+      console.log(res);
+      setWisatas(res.data.data)
+    })
+  }, [])
+
   return (
     <>
       <Nav/>
@@ -23,14 +33,11 @@ function WisataPage () {
         </div>
         <div className="z-10 -mt-96 relative px-24">
           <div className="flex overflow-x-auto h-[550px] ">
-            <WisataCard />
-            <WisataCard />
-            <WisataCard />
-            <WisataCard />
-            <WisataCard />
-            <WisataCard />
-            <WisataCard />
-
+            {
+              wisatas.map((wisata, idx) => {
+                return <WisataCard img={wisata.foto} title={wisata.name} description={wisata.desc}/>
+              })
+            }
           </div>
 
         </div>
