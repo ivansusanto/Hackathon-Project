@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import fetch from "../pages/fetch";
+import User from "../pages/User";
 
 // Data Dummy Buat cek
 const people = [
@@ -35,6 +37,20 @@ const people = [
 ];
 
 function Table() {
+    const [users, setUsers] = useState([])
+    const { http } = fetch()
+    
+    useEffect(() => {
+        http.get("users/fetch", {
+            headers:{
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`
+            }
+        }).then((res) => {
+            setUsers(res.data.users)
+        })
+    }, [])
+
+
     return (
         <>
             <div className="flex flex-col">
@@ -80,19 +96,19 @@ function Table() {
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
-                                    {people.map(person => (
+                                    {users?users.map((person) => (
                                         <tr key={person.email}>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="flex items-center">
                                                     <div className="ml-4">
-                                                        <div className="text-sm font-medium text-gray-900">{person.name}</div>
+                                                        <div className="text-sm font-medium text-gray-900">{person.display_name}</div>
                                                         <div className="text-sm text-gray-500">{person.email}</div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="text-sm text-gray-900">{person.title}</div>
-                                                <div className="text-sm text-gray-500">{person.department}</div>
+                                                <div className="text-sm text-gray-900">{person.username}</div>
+                                                <div className="text-sm text-gray-500">{person.status}</div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <span
@@ -103,10 +119,10 @@ function Table() {
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {person.role}
+                                                {person.status}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {person.tlp}
+                                                {person.no_telp}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <a href="#" className="text-indigo-600 hover:text-indigo-900">
@@ -114,7 +130,7 @@ function Table() {
                                                 </a>
                                             </td>
                                         </tr>
-                                    ))}
+                                    )):""}
                                 </tbody>
                             </table>
                         </div>
