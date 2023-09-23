@@ -64,13 +64,13 @@ function Navbar (){
             </li>
             <li className=" me-4">
               <a href="/login">
-                <button className="btn bg-green-600 w-28 text-lg">Login</button>
+                <button className="btn btn-success w-28 text-lg">Login</button>
 
               </a>
             </li>
             <li>
               <a href="/register">
-                <button className="btn btn-outline  w-28 text-lg">Register</button>
+                <button className="btn btn-outline btn-primary w-28 text-lg">Register</button>
 
               </a>
             </li>

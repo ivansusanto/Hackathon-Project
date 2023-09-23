@@ -25,7 +25,7 @@ function LandingPage(){
         <p className=" mt-3">
         Terselubung di lereng pegunungan Jawa Timur, Sumbergayam mengundang Anda untuk merasakan keindahan alamnya yang memukau dan mengeksplorasi kekayaan budaya lokalnya. Dari petualangan alam hingga kuliner lezat dan seni tradisional yang memesona, Sumbergayam menawarkan pengalaman beragam yang tak terlupakan. Temukan pesona Jawa Timur di desa yang tersembunyi ini.
         </p>
-        <button className="btn bg-green-600 btn-outline mt-10 text-xl">
+        <button className="btn btn-warning mt-10 text-xl">
           More Info
         </button>
 

@@ -69,7 +69,7 @@ function Login (){
         conf_pass: confirmPassword,
         no_telp: phone,
         display_name: name,
-        role: 1
+        role: "2"
       }
       http.post("users/register", data).then((res) => {
         if(res.message != "User berhasil terdaftar"){
