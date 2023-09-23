@@ -9,7 +9,7 @@ function WisataCard({img, title, description}){
         <div className="relative h-3/5">
           <h1 className="mt-8 text-2xl">{title}</h1>
           <p className="mt-6">{description}</p>
-          <button className="button btn-secondary">More</button>
+          <div className="absolute btn bg-teal-600 text-white bottom-10 w-28 shadow-md">More</div>
         </div>
       </div>
     </>
