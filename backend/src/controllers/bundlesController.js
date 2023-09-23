@@ -6,6 +6,7 @@ const Joi = require('joi');
 const validator = require('../validations/Validator');
 const Wisata = require('../models/Wisata');
 const Bundle_Item = require('../models/Bundle_Item');
+const env = require('../config/env.config');
 
 const cekBundle = {
     name: Joi.string().required(),
@@ -104,6 +105,8 @@ async function fetchBundle(req, res) {
             const bun = bund.dataValues.Bundle_Items[j];
             const price = bun.Wisatum.price
             prev += price
+
+            bundles[i].dataValues.Bundle_Items[j].Wisatum.foto = env('PREFIX') + bundles[i].dataValues.Bundle_Items[j].Wisatum.foto
         }
         bundles[i].dataValues.normal_price = prev;
     }
@@ -133,6 +136,8 @@ async function getBundle(req, res) {
             const bun = bund.dataValues.Bundle_Items[j];
             const price = bun.Wisatum.price
             prev += price
+
+            bundles[i].dataValues.Bundle_Items[j].Wisatum.foto = env('PREFIX') + bundles[i].dataValues.Bundle_Items[j].Wisatum.foto
         }
         bundles[i].dataValues.normal_price = prev;
     }
