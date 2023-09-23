@@ -13,6 +13,7 @@ import MasterEventPage from './pages/AdminPage/MasterEventPage';
 import MasterBundlePage from './pages/AdminPage/MasterBundlePage';
 import MasterTransaksiPage from './pages/AdminPage/MasterTransaksiPage';
 import ProfilePage from './pages/ProfilePage';
+import { ItemSelectPage } from './pages/WisataPage/ItemSelectPage/ItemSelectPage';
 
 const App = () => {
     return (
@@ -22,6 +23,7 @@ const App = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/wisata" element={<WisataPage />} />
+                <Route path="/wisata/:id" element={<ItemSelectPage />} />
                 <Route path="/acara" element={<AcaraPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/admin/login" element={<LoginAdminPage />} />

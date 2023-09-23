@@ -21,7 +21,7 @@ function WisataPage () {
       <Nav/>
           {/* <div className="relative h-[741px] bg-[url(https://c.animaapp.com/YpKcOcyw/img/image-37.png)] bg-cover bg-[50%_50%]"> */}
         <div className="bg-white flex flex-row justify-center w-full relative">
-          <div className="bg-white w-[1920px] h-[954px]">
+          <div className="bg-white w-[1920px] h-[790px]">
             <div className="relative h-[741px] bg-[url('/img/image-37.png')] bg-cover bg-[50%_50%]">
               <div className="absolute top-[132px] left-[154px] [text-shadow:18px_20px_14px_#00000080] [font-family:'Montserrat-Bold',Helvetica] font-bold text-white text-[79px] tracking-[0] leading-[normal]">
                 WISATA
@@ -35,7 +35,7 @@ function WisataPage () {
           <div className="flex overflow-x-auto h-[550px] ">
             {
               wisatas.map((wisata, idx) => {
-                return <WisataCard img={wisata.foto} title={wisata.name} description={wisata.desc}/>
+                return <WisataCard id={wisata.id} img={wisata.foto} title={wisata.name} description={wisata.desc}/>
               })
             }
           </div>
