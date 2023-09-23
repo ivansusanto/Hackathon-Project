@@ -18,11 +18,9 @@ function LandingPage(){
 
   useEffect(() => {
     http.get("wisata").then((res) => {
-      console.log(res)
       setTops(res.data.data)
     })
     http.get("bundle").then((res) => {
-      console.log(res)
       setBundles(res.data.data)
     })
   }, [])
