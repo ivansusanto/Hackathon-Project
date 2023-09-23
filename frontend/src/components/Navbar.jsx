@@ -9,7 +9,6 @@ function Navbar (){
   function navClickHandler(){
     setNavClick(!navClick)
   }
-
   return(
     <>
       <div className="navbar flex justify-between p-5 w-full shadow-lg z-10">
@@ -62,7 +61,7 @@ function Navbar (){
 
               </a>
             </li>
-            <div className="login-register">
+            <div className="login-register" style={{display: !sessionStorage.getItem("token") ? "block" : "none"}}>
               <ul className="flex">
                 <li className=" me-4">
                   <a href="/login">
@@ -78,7 +77,7 @@ function Navbar (){
                 </li>
               </ul>
             </div>
-            <div className="profile hidden" style={{display: sessionStorage.getItem()}}>
+            <div className="profile hidden" style={{display: sessionStorage.getItem("token") ? "block" : "none"}}>
 
             </div>
           </ul>
