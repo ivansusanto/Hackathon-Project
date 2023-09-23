@@ -486,3 +486,7 @@
   overflow: hidden;
   position: relative;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

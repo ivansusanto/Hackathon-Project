@@ -4,13 +4,7 @@
     flex-direction: row;
     justify-content: center;
     width: 100%;
-  }
-  
-  .footer .div {
-    background-color: #dddddddd;
-    height: 271px;
-    position: relative;
-    width: 1920px;
+    position: relative
   }
   
   .footer .social {
@@ -35,7 +29,7 @@
     left: 568px;
     position: absolute;
     top: 32px;
-    width: 1015px;
+    width: 900px;
   }
   
   .footer .column {
