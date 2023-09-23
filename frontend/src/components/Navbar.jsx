@@ -63,7 +63,10 @@ function Navbar (){
               </a>
             </li>
             <li>
-              <button className="btn btn-accent w-28 text-lg">Login</button>
+              <a href="/login">
+                <button className="btn bg-green-600 w-28 text-lg">Login</button>
+
+              </a>
             </li>
           </ul>
         </div>
@@ -95,7 +98,10 @@ function Navbar (){
             </a>
           </li>
           <li>
-            <button className="btn rounded-none btn-accent text-lg w-full shadow-xl">Login</button>
+            <a href="/login">
+              <button className="btn bg-green-600 rounded-none text-lg w-full shadow-xl">Login</button>
+
+            </a>
           </li>
         </ul>
       </div>
