@@ -42,9 +42,8 @@ export default function ProfilePage(){
       no_telp: phone
     }
     console.log(data)
-    http.put("users/update", { data }, {
+    http.put("users/update", data, {
       headers:{
-        "Content-type":"multipart/form-data",
         Authorization: 'Bearer ' + sessionStorage.getItem("token")
       }
     }).then((res) => {
@@ -79,12 +78,12 @@ export default function ProfilePage(){
 
             <div className="mt-7">
               Nama pengguna
-            <Input placeholder='Nama pengguna' className="border rounded-md p-3 w-full" defaultValue={user.display_name} onChange={nameHandler}/>
+            <Input placeholder='Nama pengguna' className="border rounded-md p-3 w-full" value={name} onChange={nameHandler}/>
 
             </div>
             <div className="mt-7">
               Nomor Telepon
-            <Input placeholder='Nomor telepon' className="border rounded-md p-3 w-full" defaultValue={user.no_telp} onChange={phoneHandler}/>
+            <Input placeholder='Nomor telepon' className="border rounded-md p-3 w-full" value={phone} onChange={phoneHandler}/>
 
             </div>
 
