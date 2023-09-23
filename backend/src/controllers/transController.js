@@ -12,16 +12,8 @@ const axios = require('axios');
 const validator = require('../validations/Validator');
 
 async function createTrans(req, res){
-    let { bundles_id, wisata_id, start_date, end_date, bank } = req.body
+    let { bundles_id, wisata_id, start_date, end_date } = req.body
     
-    bank = bank.toLowerCase();
-
-    if(bank != "permata" && bank != "bca" && bank != "bni" && bank != "bri"){
-        return res.status(StatusCode.BAD_REQUEST).json({ 
-            message: "Invalid bank name",
-        })
-    }
-
     const user = await User.findByPk(req.user)
     const counte = await HTrans.count();
     const urutan = counte + 1
@@ -89,7 +81,7 @@ async function createTrans(req, res){
                 order_id: invoice,
                 gross_amount: amount,
             },
-            bank_transfer: {bank: bank},
+            bank_transfer: {bank: "bca"},
             customer_details: {
                 first_name: user.display_name,
                 email: user.email,
@@ -101,15 +93,12 @@ async function createTrans(req, res){
     await axios.request(option).then(async (response) => {
         let va_number;
         console.log(response.data);
-        if (bank == 'permata')
-            va_number = response.data.permata_va_number
-        else 
-            va_number = response.data.va_numbers[0].va_number
-
+        
         return res.status(201).json({
             invoice: invoice,
-            bank: bank,
-            transaction_status: 'pending'
+            bank: "bca",
+            transaction_status: 'pending',
+            token: response.data.token
         })
     }).catch(err => {
         console.log(err);
