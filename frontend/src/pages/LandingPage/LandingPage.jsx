@@ -7,6 +7,7 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import React from "react";
 import "./style.css";
 import TopDest from "../../components/LandingTopDestination.jsx"
+import Bundle from "../../components/Bundle.jsx"
 
 
 function LandingPage(){
@@ -174,7 +175,7 @@ function LandingPage(){
         <p className=" w-1/2 mt-3">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam necessitatibus corporis sequi dolorem dicta eligendi, ipsum nisi quia labore illum pariatur aliquid, magni aut quas. Ea quaerat ipsum laborum molestias!
         </p>
-        <button className="btn btn-neutral mt-10 text-xl">
+        <button className="btn bg-green-600 btn-outline mt-10 text-xl">
           More Info
         </button>
 
@@ -195,8 +196,19 @@ function LandingPage(){
         </div>
       </div>
     </div>
-    <div className=" bg-white md:pt-64 lg:pt-72 xl:pt-80 2xl:pt-96">
-      <h1 className="ms-24 font-bold text-3xl 2xl:-mt-16">Offers</h1>
+    <div className=" bg-white md:pt-64 lg:pt-72 xl:pt-80 2xl:pt-96 pb-8">
+      <div className="ms-24">
+        <h1 className="font-bold text-3xl 2xl:-mt-16">Offers</h1>
+        <div className=" no-scrollbar flex h-56 overflow-x-auto">
+          <Bundle img={jumbo} title={"test"} price={50000} priceBefore={40000}></Bundle>
+          <Bundle img={jumbo} title={"test"} price={50000} priceBefore={40000}></Bundle>
+          <Bundle img={jumbo} title={"test"} price={50000} priceBefore={40000}></Bundle>
+          <Bundle img={jumbo} title={"test"} price={50000} priceBefore={40000}></Bundle>
+          <Bundle img={jumbo} title={"test"} price={50000} priceBefore={40000}></Bundle>
+
+        </div>
+
+      </div>
     </div>
 
       <Foot/>
