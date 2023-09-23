@@ -5,6 +5,7 @@ const { Op, QueryTypes } = require('sequelize')
 const Joi = require('joi');
 const validator = require('../validations/Validator');
 const Wisata = require('../models/Wisata');
+const Bundle_Item = require('../models/Bundle_Item');
 
 const cekBundle = {
     name: Joi.string().required(),
@@ -88,8 +89,24 @@ async function fetchBundle(req, res) {
         where: {
             name: {[Op.like]: `%${name ? name : ""}%`},
             status: 1
+        },
+        include: {
+            model: Item,
+            include: Wisata
         }
     })
+
+    for (let i = 0; i < bundles.length; i++) {
+        const bund = bundles[i];
+        
+        let prev = 0;
+        for (let j = 0; j < bund.dataValues.Bundle_Items.length; j++) {
+            const bun = bund.dataValues.Bundle_Items[j];
+            const price = bun.Wisatum.price
+            prev += price
+        }
+        bundles[i].dataValues.normal_price = prev;
+    }
 
     return res.status(200).json({data: bundles})
 }
@@ -97,10 +114,30 @@ async function fetchBundle(req, res) {
 async function getBundle(req, res) {
     const { id_bundle } = req.params
 
-    const bundle = await Bundle.findByPk(id_bundle)
-    if (!bundle || bundle.status == 0) return res.status(404).json({message: "Bundle tidak ditemukan"})
+    const bundles = await Bundle.findAll({
+        where: {
+            id: id_bundle,
+            status: 1
+        },
+        include: {
+            model: Item,
+            include: Wisata
+        }
+    })
 
-    return res.status(200).json({data: bundle})
+    for (let i = 0; i < bundles.length; i++) {
+        const bund = bundles[i];
+        
+        let prev = 0;
+        for (let j = 0; j < bund.dataValues.Bundle_Items.length; j++) {
+            const bun = bund.dataValues.Bundle_Items[j];
+            const price = bun.Wisatum.price
+            prev += price
+        }
+        bundles[i].dataValues.normal_price = prev;
+    }
+
+    return res.status(200).json({data: bundles})
 }
 
 module.exports = {
