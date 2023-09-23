@@ -156,9 +156,9 @@ function Login (){
 
                 </div>
               </div>
-              
+                
               <div>
-                <button className="btn btn-primary w-full mt-10 mb-1 text-xl font-bold" onClick={submitHandler} disabled={!filled}>Masuk</button>
+                <button className="btn btn-primary w-full mt-10 mb-1 text-xl font-bold" onClick={submitHandler} disabled={!filled}>Daftar</button>
               </div>
               Sudah pernah mendaftar? Silahkan <a href="/login" className=" text-primary"><u>masuk</u></a>
             </div>
