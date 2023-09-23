@@ -25,6 +25,9 @@ User.init({
     no_telp: {
         type: DataTypes.STRING(15)
     },
+    no_rek: {
+        type: DataTypes.STRING(25),
+    },
     role: {
         type: DataTypes.INTEGER(1)
     },
