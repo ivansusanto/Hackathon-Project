@@ -29,13 +29,13 @@ function SideNav() {
             <ListItemPrefix>
               <MapIcon className="h-5 w-5" />
             </ListItemPrefix>
-            <a href="/admin/master-wisata">Master Wisata</a>
+            <a href="/master-wisata">Master Wisata</a>
           </ListItem>
           <ListItem>
             <ListItemPrefix>
               <CalendarIcon className="h-5 w-5" />
             </ListItemPrefix>
-            <a href="/admin/master-event">Master Event</a>
+            <a href="/master-event">Master Event</a>
             <ListItemSuffix>
               <Chip size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
             </ListItemSuffix>
