@@ -9,6 +9,7 @@ const cekWisata = {
     alamat: Joi.string().required(),
     latitude: Joi.number().required(),
     longitude: Joi.number().required(),
+    price: Joi.number().integer().required(),
     jenis: Joi.number().integer().required(),
     foto: Joi.allow(),
 }
@@ -26,6 +27,7 @@ async function createWisata(req, res) {
         alamat: data.alamat,
         latitude: data.latitude,
         longitude: data.longitude,
+        price: data.price,
         jenis: data.jenis,
         foto: null,
         user_id: req.user,
@@ -37,7 +39,7 @@ async function createWisata(req, res) {
 
 async function updateWisata(req, res) {
     const { id_wisata } = req.params
-    const { name, alamat, latitude, longitude } = req.body
+    const { name, alamat, latitude, longitude, price } = req.body
 
     const wisata = await Wisata.findByPk(id_wisata)
     if (wisata == null || wisata.status == 0) return res.status(404).json({message: "Wisata tidak ditemukan"})
@@ -47,6 +49,7 @@ async function updateWisata(req, res) {
         alamat: alamat,
         latitude: latitude,
         longitude: longitude,
+        price: price,
     })
 
     return res.status(200).json({message: "Wisata berhasil diubah!"})
