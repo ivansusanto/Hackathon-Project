@@ -4,13 +4,22 @@ import jumbo from "/img/image 3.png"
 import rectangle from "/img/Rectangle 20.png"
 import arrow from "/img/Arrow 1.png"
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import TopDest from "../../components/LandingTopDestination.jsx"
 import Bundle from "../../components/Bundle.jsx"
+import fetch from "../fetch.js"
 
 
 function LandingPage(){
+  const {http} = fetch()
+  const [bundles, setBundles] = useState([])
+
+  useEffect(() => {
+    http.get("bundle").then((res) => {
+      setBundles(res.data.data)
+    })
+  }, [])
 
   return(
     <>
@@ -50,6 +59,12 @@ function LandingPage(){
       <div className="px-24">
         <h1 className="font-bold text-3xl 2xl:-mt-16">Offers</h1>
         <div className=" no-scrollbar flex h-56 overflow-x-auto">
+          {
+            bundles.map((bundle, idx)=>{
+              return <Bundle img="" title={bundle.name} price={bundle.price} priceBefore={bundle.normal_price} ></Bundle>
+            })
+          }
+
           <Bundle img={jumbo} title={"test"} price={50000} priceBefore={40000}></Bundle>
           <Bundle img={jumbo} title={"test"} price={50000} priceBefore={40000}></Bundle>
           <Bundle img={jumbo} title={"test"} price={50000} priceBefore={40000}></Bundle>

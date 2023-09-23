@@ -11,12 +11,12 @@ export default function Bundle({img, title, price, priceBefore}){
             <div className="relative w-full h-full">
               <h1 className="font-bold text-lg">{title}</h1>
               <p>Harga sebelum bundle</p>
-              <p>Rp. {priceBefore}</p>
+              <strike>Rp {priceBefore.toLocaleString('id-ID')}</strike>
               
               <div className="absolute bottom-0 w-full">
 
-                <p>Harga setelah bundle</p>
-                <button className="btn btn-primary w-full ">Rp. {price}</button>
+                <p className="text-center text-xl">Harga setelah bundle</p>
+                <button className="btn btn-primary w-full text-xl text-white">Rp {price.toLocaleString('id-ID')}</button>
               </div>
 
             </div>
