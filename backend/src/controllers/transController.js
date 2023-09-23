@@ -28,7 +28,7 @@ async function createTrans(req, res){
             invoice: invoice,
             date: Date.now(),
             total: wisata.price,
-            status: 1,
+            status: 2,
             user_id: user.id,
             bundles_id: null
         })
@@ -47,7 +47,7 @@ async function createTrans(req, res){
             invoice: invoice,
             date: Date.now(),
             total: bundle.price,
-            status: 1,
+            status: 2,
             user_id: user.id,
             bundles_id: bundles_id
         })

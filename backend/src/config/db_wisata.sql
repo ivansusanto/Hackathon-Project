@@ -31,9 +31,36 @@ CREATE TABLE `appointments` (
   KEY `wisata_id` (`wisata_id`),
   CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`wisata_id`) REFERENCES `wisata` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `appointments` */
+
+insert  into `appointments`(`id`,`user_id`,`wisata_id`,`start`,`end`) values 
+(1,1,1,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(2,1,1,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(3,1,2,'2023-09-23 13:00:00','2023-09-23 14:00:00');
+
+/*Table structure for table `bundle_items` */
+
+DROP TABLE IF EXISTS `bundle_items`;
+
+CREATE TABLE `bundle_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bundle_id` int(11) DEFAULT NULL,
+  `wisata_id` int(11) DEFAULT NULL,
+  `percentage` double DEFAULT NULL COMMENT 'Persentase harga wisata dalam bundle',
+  PRIMARY KEY (`id`),
+  KEY `bundle_id` (`bundle_id`),
+  KEY `wisata_id` (`wisata_id`),
+  CONSTRAINT `bundle_items_ibfk_1` FOREIGN KEY (`bundle_id`) REFERENCES `bundles` (`id`),
+  CONSTRAINT `bundle_items_ibfk_2` FOREIGN KEY (`wisata_id`) REFERENCES `wisata` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `bundle_items` */
+
+insert  into `bundle_items`(`id`,`bundle_id`,`wisata_id`,`percentage`) values 
+(1,1,1,80),
+(2,1,2,20);
 
 /*Table structure for table `bundles` */
 
@@ -45,9 +72,12 @@ CREATE TABLE `bundles` (
   `price` bigint(20) DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `bundles` */
+
+insert  into `bundles`(`id`,`name`,`price`,`status`) values 
+(1,'Hemat',100000,1);
 
 /*Table structure for table `events` */
 
@@ -78,7 +108,7 @@ CREATE TABLE `h_trans` (
   `invoice` varchar(255) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `total` bigint(20) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL COMMENT '0:gagal, 1:sukses, 2:pending',
   `user_id` int(11) DEFAULT NULL,
   `bundles_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -86,27 +116,13 @@ CREATE TABLE `h_trans` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `h_trans_ibfk_1` FOREIGN KEY (`bundles_id`) REFERENCES `bundles` (`id`),
   CONSTRAINT `h_trans_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `h_trans` */
 
-/*Table structure for table `items` */
-
-DROP TABLE IF EXISTS `items`;
-
-CREATE TABLE `items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `bundle_id` int(11) DEFAULT NULL,
-  `wisata_id` int(11) DEFAULT NULL,
-  `percentage` double DEFAULT NULL COMMENT 'Persentase harga wisata dalam bundle',
-  PRIMARY KEY (`id`),
-  KEY `bundle_id` (`bundle_id`),
-  KEY `wisata_id` (`wisata_id`),
-  CONSTRAINT `items_ibfk_1` FOREIGN KEY (`bundle_id`) REFERENCES `bundles` (`id`),
-  CONSTRAINT `items_ibfk_2` FOREIGN KEY (`wisata_id`) REFERENCES `wisata` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `items` */
+insert  into `h_trans`(`id`,`invoice`,`date`,`total`,`status`,`user_id`,`bundles_id`) values 
+(1,'INV23092023001','2023-09-23 13:46:12',150000,1,1,NULL),
+(2,'INV23092023002','2023-09-23 13:46:44',100000,1,1,1);
 
 /*Table structure for table `users` */
 
@@ -140,6 +156,7 @@ CREATE TABLE `wisata` (
   `alamat` varchar(255) DEFAULT NULL,
   `latitude` double DEFAULT NULL,
   `longitude` double DEFAULT NULL,
+  `price` bigint(20) DEFAULT NULL,
   `desc` text DEFAULT NULL,
   `jenis` int(1) DEFAULT NULL COMMENT '0:Wisata, 1:UMKM',
   `foto` varchar(255) DEFAULT NULL,
@@ -152,9 +169,9 @@ CREATE TABLE `wisata` (
 
 /*Data for the table `wisata` */
 
-insert  into `wisata`(`id`,`name`,`alamat`,`latitude`,`longitude`,`desc`,`jenis`,`foto`,`user_id`,`status`) values 
-(1,'ArumJeram','Trenggalek',124.2,1.02,NULL,0,NULL,1,1),
-(2,'Trailing','Trenggalek',124.2,1.02,NULL,0,NULL,1,1);
+insert  into `wisata`(`id`,`name`,`alamat`,`latitude`,`longitude`,`price`,`desc`,`jenis`,`foto`,`user_id`,`status`) values 
+(1,'ArumJeram','Trenggalek',124.2,1.02,150000,NULL,0,NULL,1,1),
+(2,'Trailing','Trenggalek',124.2,1.02,100000,NULL,0,NULL,1,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

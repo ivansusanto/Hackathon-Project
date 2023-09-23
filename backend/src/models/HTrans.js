@@ -26,6 +26,7 @@ HTrans.init(
     status: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
+      comment: "0:Gagal, 1:Sukses, 2:Pending",
     },
     user_id: {
       type: DataTypes.INTEGER(11),
