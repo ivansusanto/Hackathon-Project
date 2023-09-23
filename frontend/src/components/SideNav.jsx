@@ -43,7 +43,7 @@ function SideNav() {
             </ListItemPrefix>
             Master Event
             <ListItemSuffix>
-              <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
+              <Chip size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
             </ListItemSuffix>
           </ListItem>
           <ListItem>

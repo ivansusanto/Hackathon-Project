@@ -6,6 +6,7 @@ import Login from './pages/LoginPage/Login';
 import Register from './pages/RegisterPage/Register';
 import WisataPage from './pages/WisataPage/WisataPage';
 import AcaraPage  from './pages/AcaraPage/AcaraPage';
+import MasterUserPage from './pages/AdminPage/MasterUserPage';
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
                 <Route path="/register" element={<Register />} />
                 <Route path="/wisata" element={<WisataPage />} />
                 <Route path="/acara" element={<AcaraPage />} />
+                <Route path="/admin/master-user" element={<MasterUserPage />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </>
