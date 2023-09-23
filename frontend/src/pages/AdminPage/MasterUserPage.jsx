@@ -1,17 +1,18 @@
 import Navbar from "../../components/SideNav"
+import Table from "../../components/Table"
 
 function MasterUserPage(){
     return (
         <>
-        <ul>
-            <li>
+        <div className="flex h-screen">
+            <div className="h-screen">
                 <Navbar/>
-            </li>
-            <li>
-                {/* item */}
-            </li>
-        </ul>
- 
+            </div>
+
+            <div>
+                <Table/>
+            </div>
+        </div>
         </>
     )
 }
