@@ -6,9 +6,16 @@ export default function fetch(){
   const http = axios.create({
     baseURL:url,
     headers:{
-        "Content-type":"application/json",
+      "Content-type":"application/json",
     }
   })
 
-  return {http}
+  const http_file = axios.create({
+    baseURL:url,
+    headers:{
+      "Content-type":"multipart/form-data",
+    }
+  })
+
+  return {http, http_file}
 }
