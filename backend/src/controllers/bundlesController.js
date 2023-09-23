@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const Bundle = require('../models/Bundle');
-const Item = require('../models/Item');
+const Item = require('../models/Bundle_Item');
 const { Op, QueryTypes } = require('sequelize')
 const Joi = require('joi');
 const validator = require('../validations/Validator');

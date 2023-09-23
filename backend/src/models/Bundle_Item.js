@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/db.config");
 
-class Item extends Model {}
+class Bundle_Item extends Model {}
 
-Item.init(
+Bundle_Item.init(
   {
     id: {
       type: DataTypes.INTEGER(11),
@@ -27,11 +27,11 @@ Item.init(
   },
   {
     sequelize,
-    modelName: "Item",
-    tableName: "items",
+    modelName: "Bundle_Item",
+    tableName: "bundle_items",
     timestamps: false,
     underscored: true,
   }
 );
 
-module.exports = Item;
+module.exports = Bundle_Item;
