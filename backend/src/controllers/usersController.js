@@ -79,7 +79,7 @@ async function fetchUser(req, res) {
 }
 
 module.exports = {
-    registerUser, loginUser ,fetchUser
+    registerUser, loginUser , fetchUser
 }
 
 // const addUserSchema = {

@@ -27,42 +27,44 @@ async function createTrans(req, res){
         const wisata = await Wisata.findByPk(wisata_id)
         if (!wisata) return res.status(404).json({message: "Wisata tidak ditemukan!"})
         amount = wisata.price
-        // const newTrans = await HTrans.create({
-        //     invoice: invoice,
-        //     date: Date.now(),
-        //     total: wisata.price,
-        //     status: 2,
-        //     user_id: user.id,
-        //     bundles_id: null
-        // })
+        const newTrans = await HTrans.create({
+            invoice: invoice,
+            date: Date.now(),
+            total: wisata.price,
+            status: 2,
+            user_id: user.id,
+            bundles_id: null,
+            wisata_id: wisata.id,
+        })
 
-        // const newAppoint = await Appointment.create({
-        //     user_id: req.user,
-        //     wisata_id: wisata_id,
-        //     start: start_date,
-        //     end: end_date,
-        // })
+        const newAppoint = await Appointment.create({
+            user_id: req.user,
+            wisata_id: wisata_id,
+            start: start_date,
+            end: end_date,
+        })
     }else if (!wisata_id && bundles_id){
         const bundle = await Bundle.findByPk(bundles_id)
         if (!bundle) return res.status(404).json({message: "Bundle tidak ditemukan!"})
         amount = bundle.price
-        // const newTrans = await HTrans.create({
-        //     invoice: invoice,
-        //     date: Date.now(),
-        //     total: bundle.price,
-        //     status: 2,
-        //     user_id: user.id,
-        //     bundles_id: bundles_id
-        // })
+        const newTrans = await HTrans.create({
+            invoice: invoice,
+            date: Date.now(),
+            total: bundle.price,
+            status: 2,
+            user_id: user.id,
+            bundles_id: bundles_id,
+            wisata_id: null,
+        })
 
         const wisatas = await Bundle_Item.findAll({where: {bundle_id: bundles_id}})
         for (const x of wisatas) {
-            // const newAppoint = await Appointment.create({
-            //     user_id: req.user,
-            //     wisata_id: x.wisata_id,
-            //     start: start_date,
-            //     end: end_date,
-            // })
+            const newAppoint = await Appointment.create({
+                user_id: req.user,
+                wisata_id: x.wisata_id,
+                start: start_date,
+                end: end_date,
+            })
         }
     }else return res.status(400).json({message: "Invalid input!"})
 
@@ -89,7 +91,6 @@ async function createTrans(req, res){
     }
     
     await axios.request(option).then(async (response) => {
-        // console.log(response);
         // let va_number;
         // if (data.bank_transfer == 'permata')
         //     va_number = response.data.permata_va_number
@@ -108,9 +109,64 @@ async function createTrans(req, res){
 }
 
 async function getStatusTrans(req, res){
-    const { id_trans } = req.params
+    const { inv } = req.params
+    
+    const trans = await HTrans.findOne({where: {invoice: inv}})
+    if (!trans) return res.status(404).json({message: "Transaksi tidak ditemukan!"})
+
+    let stats = "PENDING"
+    if (trans.status == 1) stats = "SUKSES"; else stats = "GAGAL"
+    return res.status(200).json({
+        invoice: trans.invoice,
+        total: trans.total,
+        status: stats
+    })
+}
+
+async function updateTrans(req, res){
+    const { transaction_status, order_id } = req.body;
+
+    if (!transaction_status || !order_id) return res.status(403).json({ message: `Forbidden` });
+
+    let status = transaction_status === 'settlement' ? 1 : transaction_status === 'pending' ? 2 : 0;
+    const trans = await HTrans.findOne({where: {invoice: order_id}});
+
+    await trans.update({status: status})
+
+    if (status == 1){
+
+
+        const option = {
+            method: 'POST',
+            url: "https://api.sandbox.midtrans.com/api/v1/payouts",
+            headers: {accept: 'application/json', 'content-type': 'application/json',
+                authorization: 'Basic '+Buffer.from(env("SERVER_KEY")).toString("base64")
+            },
+            body: {
+                "payouts": [
+                  {
+                    "beneficiary_name": "Jon Snow",
+                    "beneficiary_account": "1172993826",
+                    "beneficiary_bank": "bni",
+                    "beneficiary_email": "beneficiary@example.com",
+                    "amount": "100000.00",
+                    "notes": "Payout April 17"
+                  },
+                  {
+                    "beneficiary_name": "John Doe",
+                    "beneficiary_account": "112673910288",
+                    "beneficiary_bank": "mandiri",
+                    "amount": "50000.00",
+                    "notes": "Payout May 17"
+                  }
+                ]
+              }
+        }
+    }
+
+    return res.status(200).json({ message: 'Ok' });
 }
 
 module.exports = {
-    createTrans, getStatusTrans
+    createTrans, getStatusTrans, updateTrans
 }
