@@ -3,40 +3,50 @@ const { Model, DataTypes } = require("sequelize");
 
 class Event extends Model {}
 
-Event.init({
+Event.init(
+  {
     id: {
-        type: DataTypes.INTEGER(11),
-        primaryKey: true,
-        allowNull: false,
-        autoIncrement: true
+      type: DataTypes.INTEGER(11),
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
     },
     name: {
-        type: DataTypes.STRING(255)
+      type: DataTypes.STRING(255),
+      allowNull: true,
     },
     desc: {
-        type: DataTypes.TEXT
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
     start_date: {
-        type: DataTypes.DATE
+      type: DataTypes.DATE,
+      allowNull: true,
     },
     end_date: {
-        type: DataTypes.DATE
+      type: DataTypes.DATE,
+      allowNull: true,
     },
     foto: {
-        type: DataTypes.STRING(255)
+      type: DataTypes.STRING(255),
+      allowNull: true,
     },
     wisata_id: {
-        type: DataTypes.INTEGER(11)
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
     },
     status: {
-        type: DataTypes.INTEGER(1)
-    }
-}, {
+      type: DataTypes.INTEGER(1),
+      allowNull: true,
+    },
+  },
+  {
     sequelize,
     modelName: "Event",
     tableName: "events",
     timestamps: false,
-    underscored: true
-});
+    underscored: true,
+  }
+);
 
 module.exports = Event;
