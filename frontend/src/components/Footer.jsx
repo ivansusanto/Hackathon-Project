@@ -32,20 +32,19 @@ function Footer (){
             <img src={logo} alt="" style={{height: "170px"}} />
           </div>
           <div className=" w-4/6 flex justify-between">
-            <div className=" w-1/2">
+            <div className=" w-1/2 text-lg">
               <ul>
-                <li><a href="">Beranda</a></li>
-                <li><a href="">Tour</a></li>
-                <li><a href="">Festival</a></li>
-                <li><a href="">UMKM</a></li>
+                <li className="mb-2"><a href="/">Beranda</a></li>
+                <li className="mb-2"><a href="/acara">Acara</a></li>
+                <li className="mb-2"><a href="/wisata">Wisata</a></li>
               </ul>
             </div>
             <div className=" w-1/2">
               <ul>
-                <li><a href=""><b>Contact Person</b></a></li>
-                <li><a href="">34213</a></li>
-                <li><a href=""><b>Alamat</b></a></li>
-                <li><a href="">Trenggalek</a></li>
+                <li><a><b>Contact Person</b></a></li>
+                <li><a href="https://wa.me/6289626794744">089626794744</a></li>
+                <li><a><b>Alamat</b></a></li>
+                <li><a>Desa Sumbergayam - Durenan<br />Trenggalek - Jawa Timur</a></li>
               </ul>
             </div>
 
@@ -53,7 +52,12 @@ function Footer (){
         </div>
       </div>
       <div className="bg-gray-300 text-center font-bold">
-        Copyright
+        <div className="col-md-12 text-center">
+          <p>
+            Copyright &copy; 2023 All rights reserved
+          </p>
+          <p>KIM MATAHATI</p>
+        </div>
       </div>
     </>
   )
