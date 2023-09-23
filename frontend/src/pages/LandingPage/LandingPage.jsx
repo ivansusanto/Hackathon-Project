@@ -84,7 +84,7 @@ function LandingPage(){
 
         <div className="mt-8">
           <h1 className="font-bold text-3xl">Lokasi</h1>
-          <iframe className="w-full h-96" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7899.852541889274!2d111.8131201954758!3d-8.108990017680354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e791db7cd7ea675%3A0xba23deee6d4c53e1!2sSumbergayam%2C%20Kec.%20Durenan%2C%20Kabupaten%20Trenggalek%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1695407435441!5m2!1sid!2sid" ></iframe>
+          <iframe className="w-full h-96 shadow-xl" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7899.852541889274!2d111.8131201954758!3d-8.108990017680354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e791db7cd7ea675%3A0xba23deee6d4c53e1!2sSumbergayam%2C%20Kec.%20Durenan%2C%20Kabupaten%20Trenggalek%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1695407435441!5m2!1sid!2sid" ></iframe>
         </div>
       </div>
 
