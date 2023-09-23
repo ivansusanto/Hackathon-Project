@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/db.config");
 
-class Wisata extends Model {}
+class HTrans extends Model {}
 
-Wisata.init(
+HTrans.init(
   {
     id: {
       type: DataTypes.INTEGER(11),
@@ -11,51 +11,38 @@ Wisata.init(
       allowNull: false,
       autoIncrement: true,
     },
-    name: {
+    invoice: {
       type: DataTypes.STRING(255),
       allowNull: true,
     },
-    alamat: {
-      type: DataTypes.STRING(255),
+    date: {
+      type: DataTypes.DATE,
       allowNull: true,
     },
-    latitude: {
-      type: DataTypes.DOUBLE,
-      allowNull: true,
-    },
-    longitude: {
-      type: DataTypes.DOUBLE,
-      allowNull: true,
-    },
-    desc: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-    jenis: {
-      type: DataTypes.INTEGER(1),
-      allowNull: true,
-      comment: "0:Wisata, 1:UMKM",
-    },
-    foto: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    user_id: {
-      type: DataTypes.INTEGER(11),
+    total: {
+      type: DataTypes.BIGINT(20),
       allowNull: true,
     },
     status: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
     },
+    user_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
+    },
+    bundles_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
+    },
   },
   {
     sequelize,
-    modelName: "Wisata",
-    tableName: "wisata",
+    modelName: "HTrans",
+    tableName: "h_trans",
     timestamps: false,
     underscored: true,
   }
 );
 
-module.exports = Wisata;
+module.exports = HTrans;

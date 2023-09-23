@@ -8,6 +8,7 @@ import React from "react";
 import "./style.css";
 import TopDest from "../../components/LandingTopDestination.jsx"
 
+
 function LandingPage(){
 
   return(

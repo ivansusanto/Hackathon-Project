@@ -11,7 +11,7 @@ const cekEvent = {
     foto: Joi.allow(),
     event_id: Joi.number().required().external(async (id) => {
         const event = await event.findByPk(id);
-        if (!event) throw new Error("event tidak ditemukan");
+        if (!event || event.status == 0) throw new Error("event tidak ditemukan");
     })
 }
 
@@ -41,9 +41,9 @@ async function updateEvent(req, res) {
     const { name, start_date, end_date, desc } = req.body
 
     const event = await Event.findByPk(id_event)
-    if (event == null) return res.status(404).json({message: "Event tidak ditemukan"})
+    if (event == null || event.status == 0) return res.status(404).json({message: "Event tidak ditemukan"})
 
-    event.update({
+    await event.update({
         name: name,
         desc: desc,
         start_date: start_date,
@@ -57,9 +57,9 @@ async function deleteEvent(req, res) {
     const { id_event } = req.params
     
     const event = await Event.findByPk(id_event)
-    if (event == null) return res.status(404).json({message: "Event tidak ditemukan"})
+    if (event == null || event.status == 0) return res.status(404).json({message: "Event tidak ditemukan"})
 
-    event.update({ status: 0 })
+    await event.update({ status: 0 })
 
     return res.status(200).json({message: "Event berhasil dihapus!"})
 }
@@ -67,7 +67,7 @@ async function deleteEvent(req, res) {
 async function fetchEvent(req, res) {
     const { name } = req.query
 
-    const events = await Event.findAll({ where: { name: {[Op.like]: `%${name}%`}}})
+    const events = await Event.findAll({ where: { name: {[Op.like]: `%${name ? name : ""}%`}, status: 1}})
 
     return res.status(200).json({data: events})
 }
@@ -76,7 +76,7 @@ async function getEvent(req, res) {
     const { id_event } = req.params
 
     const event = await Event.findByPk(id_event)
-    if (event == null) return res.status(404).json({message: "Event tidak ditemukan"})
+    if (event == null || event.status == 0) return res.status(404).json({message: "Event tidak ditemukan"})
 
     return res.status(200).json({data: event})
 }

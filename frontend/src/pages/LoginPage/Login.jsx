@@ -89,7 +89,7 @@ function Login (){
               <div>
                 <button className="btn btn-primary w-full mt-10 mb-1 text-xl font-bold" onClick={submitHandler} disabled={!filled}>Masuk</button>
               </div>
-              Belum pernah mendaftar? Silahkan <a href="/register" className=" text-primary"><u>mendaftar</u></a>
+              Belum pernah mendaftar? Silahkan <a href="/register" className=" text-primary"><u>daftar</u></a>
             </div>
           </div>
         </div>
