@@ -4,6 +4,7 @@ const validator = require('../validations/Validator');
 const generateHashedPassword = require('../utils/Bcrypt');
 const generateToken = require('../utils/JWT');
 const bcrypt = require('bcrypt');
+const { Op, QueryTypes } = require('sequelize')
 
 const cekRegister = {
     username: Joi.string().external(async (username)=>{
@@ -74,12 +75,42 @@ async function loginUser(req, res) {
 }
 
 async function fetchUser(req, res) {
-    // const user = await User.findAll();
-    return res.status(200).json("user");
+    const user = await User.findByPk(req.user)
+    if (user.role != 0) return res.status(400).json({message: "Unauthorized"})
+
+    const users = await User.findAll({where: {
+        [Op.and]: [
+            { status: 1 },
+            { role: {[Op.not]: 0} }
+        ]
+    }})
+
+    return res.status(200).json({users: users});
+}
+
+async function getUser(req, res) {
+    const user = await User.findByPk(req.user)
+    if (user.role != 0) return res.status(400).json({message: "Unauthorized"})
+
+    return res.status(200).json({user: user});
+}
+
+async function updateUser(req, res) {
+    const { display_name, no_telp } = req.body
+    
+    const user = await User.findByPk(req.user)
+
+    user.update({
+        display_name: display_name,
+        no_telp: no_telp,
+    })
+
+    user.reload()
+    return res.status(201).json({message: "User berhasil diubah!", data: user})
 }
 
 module.exports = {
-    registerUser, loginUser , fetchUser
+    registerUser, loginUser , fetchUser, getUser, updateUser
 }
 
 // const addUserSchema = {

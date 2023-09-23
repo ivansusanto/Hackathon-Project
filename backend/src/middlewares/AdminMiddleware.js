@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const env = require("../config/env.config");
 const User = require("../models/User");
 
-const AuthMiddleware = async (req, res, next) => {
+const AdminMiddleware = async (req, res, next) => {
     const user = await User.findByPk(req.user);
     
     if (user.role === 1) {
@@ -12,4 +12,4 @@ const AuthMiddleware = async (req, res, next) => {
     }
 };
 
-module.exports = AuthMiddleware;
+module.exports = AdminMiddleware;
