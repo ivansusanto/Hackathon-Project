@@ -13,8 +13,8 @@ const {
 router.get('/', fetchEvent)
 router.get('/:id_event', getEvent);
 
-// router.use(AuthMiddleware)
-// router.use(AdminMiddleware);
+router.use(AuthMiddleware)
+router.use(AdminMiddleware);
 
 router.post('/create', upload.single('foto'), createEvent);
 router.put('/update/:id_event', upload.single('foto'), updateEvent);
