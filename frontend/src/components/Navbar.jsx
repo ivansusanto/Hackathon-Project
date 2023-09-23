@@ -25,7 +25,7 @@ function Navbar (){
 
   function logoutHandler(){
     sessionStorage.clear()
-    window.location.reload()
+    window.location.replace("/")
   }
   return(
     <>
