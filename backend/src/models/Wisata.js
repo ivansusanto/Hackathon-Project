@@ -27,6 +27,10 @@ Wisata.init(
       type: DataTypes.DOUBLE,
       allowNull: true,
     },
+    price: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+    },
     desc: {
       type: DataTypes.TEXT,
       allowNull: true,
