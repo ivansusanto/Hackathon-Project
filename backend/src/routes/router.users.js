@@ -15,4 +15,7 @@ router.get('/', fetchUser);
 router.get('/:user_id', getUser)
 router.put('/update/:user_id', updateUser)
 
+router.get('/', getOwnUser);
+router.put('/update/', updateOwnUser)
+
 module.exports = router;

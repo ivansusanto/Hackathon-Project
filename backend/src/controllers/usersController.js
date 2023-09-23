@@ -89,13 +89,36 @@ async function fetchUser(req, res) {
 }
 
 async function getUser(req, res) {
-    const user = await User.findByPk(req.user)
+    const { user_id } = req.params
+    const user = await User.findByPk(user_id)
     if (user.role != 0) return res.status(400).json({message: "Unauthorized"})
 
     return res.status(200).json({user: user});
 }
 
 async function updateUser(req, res) {
+    const { user_id } = req.params
+    const { display_name, no_telp } = req.body
+    
+    const user = await User.findByPk(user_id)
+
+    user.update({
+        display_name: display_name,
+        no_telp: no_telp,
+    })
+
+    user.reload()
+    return res.status(201).json({message: "User berhasil diubah!", data: user})
+}
+
+async function getOwnUser(req, res) {
+    const user = await User.findByPk(req.user)
+    if (user.role != 0) return res.status(400).json({message: "Unauthorized"})
+
+    return res.status(200).json({user: user});
+}
+
+async function updateOwnUser(req, res) {
     const { display_name, no_telp } = req.body
     
     const user = await User.findByPk(req.user)
@@ -110,7 +133,7 @@ async function updateUser(req, res) {
 }
 
 module.exports = {
-    registerUser, loginUser , fetchUser, getUser, updateUser
+    registerUser, loginUser , fetchUser, getUser, updateUser, getOwnUser, updateOwnUser
 }
 
 // const addUserSchema = {
