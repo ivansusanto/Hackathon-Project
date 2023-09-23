@@ -31,14 +31,28 @@ CREATE TABLE `appointments` (
   KEY `wisata_id` (`wisata_id`),
   CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`wisata_id`) REFERENCES `wisata` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `appointments` */
 
 insert  into `appointments`(`id`,`user_id`,`wisata_id`,`start`,`end`) values 
 (1,1,1,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
 (2,1,1,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
-(3,1,2,'2023-09-23 13:00:00','2023-09-23 14:00:00');
+(3,1,2,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(4,1,1,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(5,1,2,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(6,1,1,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(7,1,2,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(8,1,1,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(9,1,2,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(10,1,1,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(11,1,2,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(12,1,1,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(13,1,2,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(14,1,1,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(15,1,2,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(16,1,1,'2023-09-23 13:00:00','2023-09-23 14:00:00'),
+(17,1,2,'2023-09-23 13:00:00','2023-09-23 14:00:00');
 
 /*Table structure for table `bundle_items` */
 
@@ -111,18 +125,28 @@ CREATE TABLE `h_trans` (
   `status` int(1) DEFAULT NULL COMMENT '0:gagal, 1:sukses, 2:pending',
   `user_id` int(11) DEFAULT NULL,
   `bundles_id` int(11) DEFAULT NULL,
+  `wisata_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `bundles_id` (`bundles_id`),
   KEY `user_id` (`user_id`),
+  KEY `wisata_id` (`wisata_id`),
   CONSTRAINT `h_trans_ibfk_1` FOREIGN KEY (`bundles_id`) REFERENCES `bundles` (`id`),
-  CONSTRAINT `h_trans_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  CONSTRAINT `h_trans_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `h_trans_ibfk_3` FOREIGN KEY (`wisata_id`) REFERENCES `wisata` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `h_trans` */
 
-insert  into `h_trans`(`id`,`invoice`,`date`,`total`,`status`,`user_id`,`bundles_id`) values 
-(1,'INV23092023001','2023-09-23 13:46:12',150000,1,1,NULL),
-(2,'INV23092023002','2023-09-23 13:46:44',100000,1,1,1);
+insert  into `h_trans`(`id`,`invoice`,`date`,`total`,`status`,`user_id`,`bundles_id`,`wisata_id`) values 
+(1,'INV23092023001','2023-09-23 13:46:12',150000,1,1,NULL,NULL),
+(2,'INV23092023002','2023-09-23 13:46:44',100000,1,1,1,NULL),
+(3,'INV23092023003','2023-09-23 15:30:48',100000,2,1,1,NULL),
+(4,'INV23092023004','2023-09-23 17:37:53',100000,1,1,1,NULL),
+(5,'INV23092023005','2023-09-23 18:01:15',100000,2,1,1,NULL),
+(6,'INV23092023006','2023-09-23 18:01:59',100000,2,1,1,NULL),
+(7,'INV23092023007','2023-09-23 18:03:24',100000,2,1,1,NULL),
+(8,'INV23092023008','2023-09-23 18:03:43',100000,1,1,1,NULL),
+(9,'INV23092023009','2023-09-23 18:04:11',100000,1,1,1,NULL);
 
 /*Table structure for table `users` */
 
@@ -139,12 +163,13 @@ CREATE TABLE `users` (
   `role` int(1) DEFAULT NULL COMMENT '0:Master, 1:Admin, 2:Cust',
   `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`username`,`password`,`display_name`,`email`,`no_telp`,`no_rek`,`role`,`status`) values 
-(1,'ryk','$2b$10$s32bp0L5kuRoU60hZGyKdefNE3XAeI1q8QAZ9HjE/A9vuIJZNcsR.','Ryan','rk@gmail.com','01803282',NULL,1,1);
+(1,'ryk','$2b$10$s32bp0L5kuRoU60hZGyKdefNE3XAeI1q8QAZ9HjE/A9vuIJZNcsR.','Ryan','rk@gmail.com','01803282','0011223344',1,1),
+(2,'admin','$2b$10$Ia7rWwR1eVTstM/ONNMY2uif4rI2OOxdXm//wJBTjL6QembHEj40O','ryk','','081234124332',NULL,0,1);
 
 /*Table structure for table `wisata` */
 
