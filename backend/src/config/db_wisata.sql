@@ -1,6 +1,6 @@
 /*
-SQLyog Community v13.1.9 (64 bit)
-MySQL - 10.4.25-MariaDB : Database - db_wisata
+SQLyog Community v13.2.0 (64 bit)
+MySQL - 10.4.28-MariaDB : Database - db_wisata
 *********************************************************************
 */
 
@@ -12,7 +12,7 @@ MySQL - 10.4.25-MariaDB : Database - db_wisata
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`db_wisata` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`db_wisata` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 
 USE `db_wisata`;
 
@@ -31,7 +31,7 @@ CREATE TABLE `appointments` (
   KEY `wisata_id` (`wisata_id`),
   CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`wisata_id`) REFERENCES `wisata` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `appointments` */
 
@@ -45,7 +45,7 @@ CREATE TABLE `bundles` (
   `price` bigint(20) DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `bundles` */
 
@@ -65,7 +65,7 @@ CREATE TABLE `events` (
   PRIMARY KEY (`id`),
   KEY `wisata_id` (`wisata_id`),
   CONSTRAINT `events_ibfk_1` FOREIGN KEY (`wisata_id`) REFERENCES `wisata` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `events` */
 
@@ -79,11 +79,14 @@ CREATE TABLE `h_trans` (
   `date` datetime DEFAULT NULL,
   `total` bigint(20) DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `bundles_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `bundles_id` (`bundles_id`),
-  CONSTRAINT `h_trans_ibfk_1` FOREIGN KEY (`bundles_id`) REFERENCES `bundles` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `h_trans_ibfk_1` FOREIGN KEY (`bundles_id`) REFERENCES `bundles` (`id`),
+  CONSTRAINT `h_trans_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `h_trans` */
 
@@ -101,7 +104,7 @@ CREATE TABLE `items` (
   KEY `wisata_id` (`wisata_id`),
   CONSTRAINT `items_ibfk_1` FOREIGN KEY (`bundle_id`) REFERENCES `bundles` (`id`),
   CONSTRAINT `items_ibfk_2` FOREIGN KEY (`wisata_id`) REFERENCES `wisata` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `items` */
 
@@ -120,7 +123,7 @@ CREATE TABLE `users` (
   `role` int(1) DEFAULT NULL COMMENT '0:Master, 1:Admin, 2:Cust',
   `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `users` */
 
@@ -145,7 +148,7 @@ CREATE TABLE `wisata` (
   PRIMARY KEY (`id`),
   KEY `pemilik` (`user_id`),
   CONSTRAINT `wisata_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `wisata` */
 
