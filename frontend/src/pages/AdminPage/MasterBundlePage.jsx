@@ -1,5 +1,5 @@
 import Navbar from "../../components/SideNavmaster"
-import Table from "../../components/TableMasterUser"
+import Table from "../../components/TableMasterBundle"
 import { useState, useEffect } from "react";
 import fetch from "../fetch";
 

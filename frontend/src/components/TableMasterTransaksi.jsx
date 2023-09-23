@@ -1,37 +1,5 @@
 import React from "react";
 
-// Data Dummy Buat cek
-const people = [
-    {
-      name: 'Jane Cooper',
-      title: 'Regional Paradigm Technician',
-      department: 'Optimization',
-      role: 'Admin',
-      tlp:'081239238231',
-      email: 'jane.cooper@example.com',
-      image: 'https://bit.ly/33HnjK0',
-    },
-    {
-      name: 'John Doe',
-      title: 'Regional Paradigm Technician',
-      department: 'Optimization',
-      role: 'Tester',
-      tlp:'081239238231',
-      email: 'john.doe@example.com',
-      image: 'https://bit.ly/3I9nL2D',
-    },
-    {
-      name: 'Veronica Lodge',
-      title: 'Regional Paradigm Technician',
-      department: 'Optimization',
-      role: ' Software Engineer',
-      tlp:'081239238231',
-      email: 'veronica.lodge@example.com',
-      image: 'https://bit.ly/3vaOTe1',
-    },
-    // More people...
-  ];
-
 function Table() {
     return (
         <>
@@ -44,15 +12,15 @@ function Table() {
                                     <tr>
                                         <th
                                             scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            className="px-10 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                         >
-                                            Name
+                                            Invoice
                                         </th>
                                         <th
                                             scope="col"
                                             className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                         >
-                                            Username
+                                            Date
                                         </th>
                                         <th
                                             scope="col"
@@ -64,36 +32,22 @@ function Table() {
                                             scope="col"
                                             className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                         >
-                                            Role
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                        >
-                                            Phone
-                                        </th>
-                                        <th scope="col" className="relative px-6 py-3">
-                                            <span className="sr-only">Edit</span>
+                                            Total
                                         </th>
                                     </tr>
                                 </thead>
+
+                                {/* ISI DUMMY */}
                                 <tbody className="bg-white divide-y divide-gray-200">
-                                    {people.map(person => (
+                                    {/* {people.map(person => (
                                         <tr key={person.email}>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="flex items-center">
-                                                    <div className="flex-shrink-0 h-10 w-10">
-                                                        <img className="h-10 w-10 rounded-full" src={person.image} alt="" />
-                                                    </div>
                                                     <div className="ml-4">
                                                         <div className="text-sm font-medium text-gray-900">{person.name}</div>
                                                         <div className="text-sm text-gray-500">{person.email}</div>
                                                     </div>
                                                 </div>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="text-sm text-gray-900">{person.title}</div>
-                                                <div className="text-sm text-gray-500">{person.department}</div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <span
@@ -109,14 +63,22 @@ function Table() {
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {person.tlp}
                                             </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                {person.jenis}
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                <img className="h-10 w-10 rounded-full" src={person.foto} alt="Foto" />
+                                            </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <a href="#" className="text-indigo-600 hover:text-indigo-900">
                                                     Edit
                                                 </a>
                                             </td>
                                         </tr>
-                                    ))}
+                                    ))} */}
                                 </tbody>
+
+
                             </table>
                         </div>
                     </div>

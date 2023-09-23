@@ -8,6 +8,10 @@ import WisataPage from './pages/WisataPage/WisataPage';
 import AcaraPage  from './pages/AcaraPage/AcaraPage';
 import LoginAdminPage from './pages/LoginAdminPage/LoginAdmin';
 import MasterUserPage from './pages/AdminPage/MasterUserPage';
+import MasterWisataPage from './pages/AdminPage/MasterWisataPage';
+import MasterEventPage from './pages/AdminPage/MasterEventPage';
+import MasterBundlePage from './pages/AdminPage/MasterBundlePage';
+import MasterTransaksiPage from './pages/AdminPage/MasterTransaksiPage';
 import ProfilePage from './pages/ProfilePage';
 
 const App = () => {
@@ -22,6 +26,10 @@ const App = () => {
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/admin/login" element={<LoginAdminPage />} />
                 <Route path="/admin/master-user" element={<MasterUserPage />} />
+                <Route path="/admin/master-wisata" element={<MasterWisataPage />} />
+                <Route path="/admin/master-event" element={<MasterEventPage />} />
+                <Route path="/admin/master-bundle" element={<MasterBundlePage />} />
+                <Route path="/admin/master-transaksi" element={<MasterTransaksiPage />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </>
