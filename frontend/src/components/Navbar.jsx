@@ -112,10 +112,10 @@ function Navbar (){
 
                   </a>
                   <a href="/master-wisata">
-                    <MenuItem className="btn bg-white mb-4">Kelola</MenuItem>
+                    <MenuItem className="btn bg-info mb-4">Kelola</MenuItem>
 
                   </a>
-                  <MenuItem className="btn btn-error" onClick={logoutHandler}>Logout</MenuItem>
+                  <MenuItem className="btn bg-red-500" onClick={logoutHandler}>Logout</MenuItem>
                 </MenuList>
               </Menu>
             
