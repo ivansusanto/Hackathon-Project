@@ -40,9 +40,9 @@ async function updateWisata(req, res) {
     const { name, alamat, latitude, longitude } = req.body
 
     const wisata = await Wisata.findByPk(id_wisata)
-    if (wisata == null) return res.status(404).json({message: "Wisata tidak ditemukan"})
+    if (wisata == null || wisata.status == 0) return res.status(404).json({message: "Wisata tidak ditemukan"})
 
-    wisata.update({
+    await wisata.update({
         name: name,
         alamat: alamat,
         latitude: latitude,
@@ -56,9 +56,9 @@ async function deleteWisata(req, res) {
     const { id_wisata } = req.params
     
     const wisata = await Wisata.findByPk(id_wisata)
-    if (wisata == null) return res.status(404).json({message: "Wisata tidak ditemukan"})
+    if (wisata == null || wisata.status == 0) return res.status(404).json({message: "Wisata tidak ditemukan"})
 
-    wisata.update({ status: 0 })
+    await wisata.update({ status: 0 })
 
     return res.status(200).json({message: "Wisata berhasil dihapus!"})
 }
@@ -66,7 +66,7 @@ async function deleteWisata(req, res) {
 async function fetchWisata(req, res) {
     const { name } = req.query
 
-    const wisatas = await Wisata.findAll({ where: { name: {[Op.like]: `%${name}%`}}})
+    const wisatas = await Wisata.findAll({ where: { name: {[Op.like]: `%${name ? name : ""}%`}, status: 1}})
 
     return res.status(200).json({data: wisatas})
 }
@@ -75,7 +75,7 @@ async function getWisata(req, res) {
     const { id_wisata } = req.params
 
     const wisata = await Wisata.findByPk(id_wisata)
-    if (wisata == null) return res.status(404).json({message: "Wisata tidak ditemukan"})
+    if (wisata == null || wisata.status == 0) return res.status(404).json({message: "Wisata tidak ditemukan"})
 
     return res.status(200).json({data: wisata})
 }

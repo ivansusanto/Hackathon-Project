@@ -16,7 +16,7 @@ router.get('/:id_event', getEvent);
 router.use(AdminMiddleware);
 
 router.post('/create', createEvent);
-router.put('/update', updateEvent);
-router.delete('/delete', deleteEvent);
+router.put('/update/:id_event', updateEvent);
+router.delete('/delete/:id_event', deleteEvent);
 
 module.exports = router;

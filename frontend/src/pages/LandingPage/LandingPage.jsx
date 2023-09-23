@@ -6,13 +6,15 @@ import arrow from "/img/Arrow 1.png"
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import React from "react";
 import "./style.css";
+import TopDest from "../../components/LandingTopDestination.jsx"
+
 
 function LandingPage(){
 
   return(
     <>
     <Nav/>
-    <div className="home-page">
+    {/* <div className="home-page">
       <div className="div">
         <div className="overlap">
           <div className="jumbotron">
@@ -159,8 +161,45 @@ function LandingPage(){
           </div>
         </div>
       </div>
+    </div> */}
+
+
+    <img src={jumbo} alt="" className="absolute z-0"/>
+    <div className="jumbotron text-white z-10 relative h-96 md:h-fit" >
+      <div className=" 2xl:mt-96 xl:mt-64 xl:ms-24 lg:mt-52 lg:ms-16 md:mt-32 md:ms-12 mt-16 ms-8">
+        <h1 className=" xl:text-6xl lg:text-4xl md:text-2xl font-bold">
+          WELCOME TO <br />
+          SUMBERGAYAM
+        </h1>
+        <p className=" w-1/2 mt-3">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam necessitatibus corporis sequi dolorem dicta eligendi, ipsum nisi quia labore illum pariatur aliquid, magni aut quas. Ea quaerat ipsum laborum molestias!
+        </p>
+        <button className="btn btn-neutral mt-10 text-xl">
+          More Info
+        </button>
+
+      </div>
     </div>
-    <Foot/>
+    
+    <div className="relative w-full mt-4 lg:mt-16 2xl:mt-20">
+      <div className="absolute text-white right-0">
+        <h1 className=" text-4xl font-bold">Top Vacation destination</h1>
+        <div className=" no-scrollbar flex overflow-x-auto mt-4" style={{width: "800px"}}>
+          <TopDest img={jumbo} title={"asd"}></TopDest>
+          <TopDest img={jumbo} title={"asd"}></TopDest>
+          <TopDest img={jumbo} title={"asd"}></TopDest>
+          <TopDest img={jumbo} title={"asd"}></TopDest>
+          <TopDest img={jumbo} title={"asd"}></TopDest>
+          <TopDest img={jumbo} title={"asd"}></TopDest>
+
+        </div>
+      </div>
+    </div>
+    <div className=" bg-white md:pt-64 lg:pt-72 xl:pt-80 2xl:pt-96">
+      <h1 className="ms-24 font-bold text-3xl 2xl:-mt-16">Offers</h1>
+    </div>
+
+      <Foot/>
     </>
   )
 }
