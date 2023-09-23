@@ -68,57 +68,59 @@ async function createTrans(req, res){
         }
     }else return res.status(400).json({message: "Invalid input!"})
 
-    // Midtrans
+    // Midtrans SNAP
     const option = {
         method: 'POST',
-        url: "https://api.sandbox.midtrans.com/v2/charge",
+        url: "https://app.sandbox.midtrans.com/snap/v1/transactions",
         headers: {accept: 'application/json', 'content-type': 'application/json',
             authorization: 'Basic '+Buffer.from(env("SERVER_KEY")).toString("base64")
         },
         data: {
-            payment_type: 'bank_transfer',
             transaction_details: {
                 order_id: invoice,
                 gross_amount: amount,
             },
-            bank_transfer: {bank: "bca"},
-            customer_details: {
-                first_name: user.display_name,
-                email: user.email,
-                phone: user.no_telp
-            }
+            // callbacks: { finish: 'http://localhost:5173/'}
         }
     }
-    
-    await axios.request(option).then(async (response) => {
-        let va_number;
-        console.log(response.data);
-        
-        return res.status(201).json({
-            invoice: invoice,
-            bank: "bca",
-            transaction_status: 'pending',
-            token: response.data.token
-        })
-    }).catch(err => {
-        console.log(err);
-        return res.status(400).json({message: err.message})
+    await axios.request(option).then( async (response)=>{
+        return res.status(200).json({token: response.data.token})
     })
 }
 
 async function getStatusTrans(req, res){
     const { inv } = req.params
     
-    const trans = await HTrans.findOne({where: {invoice: inv}})
-    if (!trans) return res.status(404).json({message: "Transaksi tidak ditemukan!"})
+    const options = {
+        method: 'GET',
+        url: `https://api.sandbox.midtrans.com/v2/${inv}/status`,
+        headers: {
+            accept: 'application/json',
+            'content-type': 'application/json',
+            authorization: 'Basic ' + Buffer.from(env("SERVER_KEY")).toString("base64")
+        }
+    };
 
-    let stats = "PENDING"
-    if (trans.status == 1) stats = "SUKSES"; else if (trans.status == 0) stats = "GAGAL"
-    return res.status(200).json({
-        invoice: trans.invoice,
-        total: trans.total,
-        status: stats
+    axios.request(options).then(async response => {
+        return res.status(200).json({
+            invoice: data.invoice,
+            transaction_status: response.data.transaction_status,
+        })
+    }).catch(err => {
+        return res.status(502).json(err.message)
     })
+
+
+    // const trans = await HTrans.findOne({where: {invoice: inv}})
+    // if (!trans) return res.status(404).json({message: "Transaksi tidak ditemukan!"})
+
+    // let stats = "PENDING"
+    // if (trans.status == 1) stats = "SUKSES"; else if (trans.status == 0) stats = "GAGAL"
+    // return res.status(200).json({
+    //     invoice: trans.invoice,
+    //     total: trans.total,
+    //     status: stats
+    // })
 }
 
 async function updateTrans(req, res){
@@ -176,7 +178,7 @@ async function Payouting(){
         body: payouts
     }
     
-    await axios.request(option).then(async (response) => {
+    await axios.request(option).then(async (response) => {       
         return res.status(201).json({
             message: "Payouts berhasil!"
         })

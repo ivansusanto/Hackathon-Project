@@ -39,11 +39,11 @@ export const ItemSelectPage = () => {
       start_date: startTime,
       end_date: endTime,
     }
-    http.post('/transaction', data).then((res) => {
+    http.post('/transaction', data, {headers:{ Authorization: `Bearer ${sessionStorage.getItem('token')}`}}).then((res) => {
       console.log(res.data);
-      setTransaction(res.data.data)
+      setTransaction(res.data)
+      window.snap.pay(res.data.token)
     })
-    // window.snap.pay()
   }
 
 
@@ -68,7 +68,7 @@ export const ItemSelectPage = () => {
                   Start time : <input type="datetime-local" onChange={startTimeHandler}/> <br /><br />
                   End time : <input type="datetime-local" onChange={endTimeHandler}/> <br /><br /><br />
                 </div>
-                <button className='bg-violet-800 text-white btn font-semibold py-3 px-16 rounded-xl h-full' onClick={submitHandler}>Make an appointment</button>
+                <button className='bg-violet-800 text-white btn font-semibold py-3 px-16 rounded-xl h-full' onClick={submitHandler}>Booking</button>
             </div>
         </div>
     </div>
