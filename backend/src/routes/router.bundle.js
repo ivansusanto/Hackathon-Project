@@ -8,12 +8,12 @@ const {
     createBundle, updateBundle, deleteBundle, fetchBundle, getBundle
 } = require('../controllers/bundlesController');
 
-// router.use(AuthMiddleware);
+router.use(AuthMiddleware);
 
 router.get('/', fetchBundle)
 router.get('/:id_bundle', getBundle);
 
-// router.use(AdminMiddleware);
+router.use(AdminMiddleware);
 
 router.post('/create', createBundle);
 router.put('/update/:id_bundle', updateBundle);

@@ -84,7 +84,12 @@ async function deleteBundle(req, res) {
 async function fetchBundle(req, res) {
     const { name } = req.query
 
-    const bundles = await Bundle.findAll({ where: { name: {[Op.like]: `%${name ? name : ""}%`}, status: 1}})
+    const bundles = await Bundle.findAll({
+        where: {
+            name: {[Op.like]: `%${name ? name : ""}%`},
+            status: 1
+        }
+    })
 
     return res.status(200).json({data: bundles})
 }

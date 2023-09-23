@@ -15,6 +15,9 @@ app.use(
     })
 );
 
+const Associations = require("./src/models/models.associations.js");
+Associations();
+
 app.use('/api', apiRouter);
 
 app.all('*', (req, res) => {
