@@ -13,10 +13,16 @@ import fetch from "../fetch.js"
 
 function LandingPage(){
   const {http} = fetch()
+  const [tops, setTops] = useState([])
   const [bundles, setBundles] = useState([])
 
   useEffect(() => {
+    http.get("wisata").then((res) => {
+      console.log(res)
+      setTops(res.data.data)
+    })
     http.get("bundle").then((res) => {
+      console.log(res)
       setBundles(res.data.data)
     })
   }, [])
@@ -45,12 +51,16 @@ function LandingPage(){
       <div className="absolute text-white right-40">
         <h1 className=" text-4xl font-bold">Top Vacation destination</h1>
         <div className=" no-scrollbar flex overflow-x-auto mt-4" style={{width: "800px"}}>
-          <TopDest img={jumbo} title={"asd"}></TopDest>
-          <TopDest img={jumbo} title={"asd"}></TopDest>
-          <TopDest img={jumbo} title={"asd"}></TopDest>
-          <TopDest img={jumbo} title={"asd"}></TopDest>
-          <TopDest img={jumbo} title={"asd"}></TopDest>
-          <TopDest img={jumbo} title={"asd"}></TopDest>
+          {
+            tops.map((top, idx) => {
+              return <TopDest img={top.foto} title={top.name}></TopDest>
+            })
+          }
+          {
+            tops.map((top, idx) => {
+              return <TopDest img={top.foto} title={top.name}></TopDest>
+            })
+          }
 
         </div>
       </div>
@@ -61,15 +71,14 @@ function LandingPage(){
         <div className=" no-scrollbar flex h-56 overflow-x-auto">
           {
             bundles.map((bundle, idx)=>{
-              return <Bundle img="" title={bundle.name} price={bundle.price} priceBefore={bundle.normal_price} ></Bundle>
+              return <Bundle img1={bundle.Bundle_Items[0].Wisatum.foto} img2={bundle.Bundle_Items[1].Wisatum.foto} title={bundle.name} price={bundle.price} priceBefore={bundle.normal_price} key={idx} ></Bundle>
             })
           }
-
-          <Bundle img={jumbo} title={"test"} price={50000} priceBefore={40000}></Bundle>
-          <Bundle img={jumbo} title={"test"} price={50000} priceBefore={40000}></Bundle>
-          <Bundle img={jumbo} title={"test"} price={50000} priceBefore={40000}></Bundle>
-          <Bundle img={jumbo} title={"test"} price={50000} priceBefore={40000}></Bundle>
-          <Bundle img={jumbo} title={"test"} price={50000} priceBefore={40000}></Bundle>
+          {
+            bundles.map((bundle, idx)=>{
+              return <Bundle img1={bundle.Bundle_Items[0].Wisatum.foto} img2={bundle.Bundle_Items[1].Wisatum.foto} title={bundle.name} price={bundle.price} priceBefore={bundle.normal_price} key={idx} ></Bundle>
+            })
+          }
 
         </div>
 
