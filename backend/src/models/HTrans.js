@@ -36,6 +36,10 @@ HTrans.init(
       type: DataTypes.INTEGER(11),
       allowNull: true,
     },
+    wisata_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
+    }
   },
   {
     sequelize,
