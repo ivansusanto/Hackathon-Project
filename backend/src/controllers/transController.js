@@ -12,8 +12,16 @@ const axios = require('axios');
 const validator = require('../validations/Validator');
 
 async function createTrans(req, res){
-    const { bundles_id, wisata_id, start_date, end_date } = req.body
+    let { bundles_id, wisata_id, start_date, end_date, bank } = req.body
     
+    bank = bank.toLowerCase();
+
+    if(bank != "permata" && bank != "bca" && bank != "bni" && bank != "bri"){
+        return res.status(StatusCode.BAD_REQUEST).json({ 
+            message: "Invalid bank name",
+        })
+    }
+
     const user = await User.findByPk(req.user)
     const counte = await HTrans.count();
     const urutan = counte + 1
@@ -81,7 +89,7 @@ async function createTrans(req, res){
                 order_id: invoice,
                 gross_amount: amount,
             },
-            bank_transfer: {bank: 'BCA'},
+            bank_transfer: {bank: bank},
             customer_details: {
                 first_name: user.display_name,
                 email: user.email,
@@ -91,15 +99,16 @@ async function createTrans(req, res){
     }
     
     await axios.request(option).then(async (response) => {
-        // let va_number;
-        // if (data.bank_transfer == 'permata')
-        //     va_number = response.data.permata_va_number
-        // else 
-        //     va_number = response.data.va_number[0].va_number
+        let va_number;
+        console.log(response.data);
+        if (bank == 'permata')
+            va_number = response.data.permata_va_number
+        else 
+            va_number = response.data.va_numbers[0].va_number
 
         return res.status(201).json({
             invoice: invoice,
-            bank: "BCA",
+            bank: bank,
             transaction_status: 'pending'
         })
     }).catch(err => {
@@ -115,7 +124,7 @@ async function getStatusTrans(req, res){
     if (!trans) return res.status(404).json({message: "Transaksi tidak ditemukan!"})
 
     let stats = "PENDING"
-    if (trans.status == 1) stats = "SUKSES"; else stats = "GAGAL"
+    if (trans.status == 1) stats = "SUKSES"; else if (trans.status == 0) stats = "GAGAL"
     return res.status(200).json({
         invoice: trans.invoice,
         total: trans.total,
@@ -127,44 +136,65 @@ async function updateTrans(req, res){
     const { transaction_status, order_id } = req.body;
 
     if (!transaction_status || !order_id) return res.status(403).json({ message: `Forbidden` });
-
+    
     let status = transaction_status === 'settlement' ? 1 : transaction_status === 'pending' ? 2 : 0;
     const trans = await HTrans.findOne({where: {invoice: order_id}});
 
     await trans.update({status: status})
 
     if (status == 1){
-
-
-        const option = {
-            method: 'POST',
-            url: "https://api.sandbox.midtrans.com/api/v1/payouts",
-            headers: {accept: 'application/json', 'content-type': 'application/json',
-                authorization: 'Basic '+Buffer.from(env("SERVER_KEY")).toString("base64")
-            },
-            body: {
-                "payouts": [
-                  {
-                    "beneficiary_name": "Jon Snow",
-                    "beneficiary_account": "1172993826",
-                    "beneficiary_bank": "bni",
-                    "beneficiary_email": "beneficiary@example.com",
-                    "amount": "100000.00",
-                    "notes": "Payout April 17"
-                  },
-                  {
-                    "beneficiary_name": "John Doe",
-                    "beneficiary_account": "112673910288",
-                    "beneficiary_bank": "mandiri",
-                    "amount": "50000.00",
-                    "notes": "Payout May 17"
-                  }
-                ]
-              }
-        }
+        // Fase Production
+        // Payouting();
     }
 
     return res.status(200).json({ message: 'Ok' });
+}
+
+async function Payouting(){
+    let payouts = []
+    if (trans.bundles_id != null){
+        const wisatas = await Bundle_Item.findAll({where: {bundle_id: trans.bundles_id}});
+        for (const x of wisatas) {
+            const pemilik = await User.findByPk(trans.user_id);
+            let amount = trans.total * (x.percentages/100)
+            payouts.push({
+                "beneficiary_name": pemilik.display_name,
+                "beneficiary_account": pemilik.no_rek,
+                "beneficiary_bank": "bca",
+                "beneficiary_email": pemilik.email,
+                "amount": amount,
+                "notes": "-"
+            })
+        }
+    }else if (trans.wisata_id != null){
+        const pemilik = await User.findByPk(trans.wisata_id);
+        payouts.push({
+            "beneficiary_name": pemilik.display_name,
+            "beneficiary_account": pemilik.no_rek,
+            "beneficiary_bank": "bca",
+            "beneficiary_email": pemilik.email,
+            "amount": trans.total,
+            "notes": "-"
+        })
+    }
+
+    const option = {
+        method: 'POST',
+        url: "https://api.sandbox.midtrans.com/api/v1/payouts",
+        headers: {accept: 'application/json', 'content-type': 'application/json',
+            authorization: 'Basic '+Buffer.from(env("SERVER_KEY")).toString("base64")
+        },
+        body: payouts
+    }
+    
+    await axios.request(option).then(async (response) => {
+        return res.status(201).json({
+            message: "Payouts berhasil!"
+        })
+    }).catch(err => {
+        console.log(err);
+        return res.status(400).json({message: err.message})
+    })
 }
 
 module.exports = {

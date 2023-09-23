@@ -7,7 +7,7 @@ const {
     createTrans, getStatusTrans, updateTrans
 } = require('../controllers/transController.js');
 
-router.put('/update/:inv', updateTrans)
+router.post('/update', updateTrans)
 
 router.use(AuthMiddleware)
 router.post('/', createTrans)
