@@ -18,7 +18,7 @@ function AcaraPage () {
                 Festival Miniaturian
               </div>
               <div className="top-[36px] left-0 absolute w-[326px] [font-family:'Montserrat-Regular',Helvetica] font-normal text-black text-[20px] text-center tracking-[0] leading-[16.0px]">
-                Coomingsoon
+                Coming Soon
               </div>
               <p className="absolute w-[191px] top-[401px] left-[11px] [font-family:'Montserrat-Italic',Helvetica] font-normal italic text-black text-[10px] tracking-[0] leading-[10px]">
                 Sumber : (Antara News Jawa Timur)
@@ -51,7 +51,7 @@ function AcaraPage () {
             Anak Tk
           </div>
           <div className="top-[558px] left-px absolute w-[326px] [font-family:'Montserrat-Regular',Helvetica] font-normal text-black text-[20px] text-center tracking-[0] leading-[16.0px]">
-            Coomingsoon
+            Coming Soon
           </div>
           <div className="absolute w-[148px] top-[928px] left-[12px] [font-family:'Montserrat-Italic',Helvetica] font-normal italic text-black text-[10px] tracking-[0] leading-[10px]">
             Sumber : (Palapa News)
