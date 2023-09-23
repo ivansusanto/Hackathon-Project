@@ -20,7 +20,7 @@ export default function Bundle({img1, img2, title, price, priceBefore}){
               <div className="absolute bottom-0 w-full">
 
                 <p className="text-center text-xl">Harga setelah bundle</p>
-                <button className="btn btn-primary w-full text-xl text-white">Rp {price.toLocaleString('id-ID')}</button>
+                <button className="btn bg-green-500 text-white w-full text-xl text-white">Rp {price.toLocaleString('id-ID')}</button>
               </div>
 
             </div>
