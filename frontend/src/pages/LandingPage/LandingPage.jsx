@@ -5,7 +5,7 @@ import rectangle from "/img/Rectangle 20.png"
 import arrow from "/img/Arrow 1.png"
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import React from "react";
-import "./style.css";
+import "./style.css"; 
 
 function LandingPage(){
 
