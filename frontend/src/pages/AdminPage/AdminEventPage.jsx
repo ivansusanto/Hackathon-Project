@@ -10,6 +10,7 @@ function MasterUserPage(){
     // useEffect(()=>{
     //     http.get("users").then((res) => {
     //         console.log(res)
+    //         setUser(res.data.data)
     //       })
     // }, [])
 

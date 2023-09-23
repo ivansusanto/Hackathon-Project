@@ -38,7 +38,12 @@ export default function BundlePage(){
               <p className="font-bold text-4xl text-center mt-5">Rp {bundle?bundle.Bundle_Items[1].Wisatum.price.toLocaleString('id-ID'):""}</p>
             </div>
           </div>
-          
+          <div className="w-full flex justify-center pt-10">
+            <div className="w-[620px] h-[500] border shadow-xl rounded-xl p-7">
+              <h1 className=" text-3xl text-center">Hanya dengan bayar total <b>Rp {bundle?bundle.price.toLocaleString("id-ID"):""}</b> anda dapat menikmati semuanya!</h1>
+              <button className="btn btn-primary mt-4 text-4xl font-bold w-full shadow-lg text-white">Bayar sekarang!</button>
+            </div>
+          </div>
         </div>
       </div>
       <Footer />
