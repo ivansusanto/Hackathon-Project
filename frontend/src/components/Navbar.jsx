@@ -62,18 +62,25 @@ function Navbar (){
 
               </a>
             </li>
-            <li className=" me-4">
-              <a href="/login">
-                <button className="btn btn-success w-28 text-lg">Login</button>
+            <div className="login-register">
+              <ul className="flex">
+                <li className=" me-4">
+                  <a href="/login">
+                    <button className="btn btn-success w-28 text-lg">Login</button>
 
-              </a>
-            </li>
-            <li>
-              <a href="/register">
-                <button className="btn btn-outline btn-primary w-28 text-lg">Register</button>
+                  </a>
+                </li>
+                <li>
+                  <a href="/register">
+                    <button className="btn btn-outline btn-primary w-28 text-lg">Register</button>
 
-              </a>
-            </li>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="profile hidden" style={{display: sessionStorage.getItem()}}>
+
+            </div>
           </ul>
         </div>
         <div className=" lg:hidden">

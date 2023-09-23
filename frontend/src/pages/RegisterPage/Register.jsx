@@ -72,10 +72,10 @@ function Login (){
         role: "2"
       }
       http.post("users/register", data).then((res) => {
-        if(res.message != "User berhasil terdaftar"){
+        if(res.data.message != "User berhasil terdaftar"){
           alert("Terdapat data invalid")
         }else{
-
+          alert("Berhasil mendaftar")
         }
       })
     }
