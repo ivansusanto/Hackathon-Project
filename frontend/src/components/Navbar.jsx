@@ -107,7 +107,7 @@ function Navbar (){
                   </Avatar>
                 </MenuButton>
                 <MenuList className=" bg-gray-100 rounded-xl p-4 w-48" >
-                  <a href="">
+                  <a href="/profile">
                     <MenuItem className="btn bg-white mb-4">Profile</MenuItem>
 
                   </a>
