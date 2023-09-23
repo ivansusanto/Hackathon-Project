@@ -3,6 +3,7 @@ const Wisata = require('../models/Wisata');
 const { Op, QueryTypes } = require('sequelize')
 const Joi = require('joi');
 const validator = require('../validations/Validator');
+const env = require('../config/env.config');
 
 const cekWisata = {
     name: Joi.string().required(),
@@ -28,11 +29,14 @@ async function createWisata(req, res) {
         latitude: data.latitude,
         longitude: data.longitude,
         price: data.price,
+        desc: data.desc,
         jenis: data.jenis,
-        foto: null,
+        foto: req.file?.filename,
         user_id: req.user,
         status: 1,
     })
+
+    newWisata.foto = env('PREFIX') + newWisata.foto;
 
     return res.status(201).json({message: "Wisata berhasil terdaftar", data: newWisata})
 }
@@ -50,9 +54,12 @@ async function updateWisata(req, res) {
         latitude: latitude,
         longitude: longitude,
         price: price,
+        foto: '/api/assets/' + req.file?.filename
     })
 
-    return res.status(200).json({message: "Wisata berhasil diubah!"})
+    wisata.foto = env('PREFIX') + wisata.foto;
+
+    return res.status(200).json({message: "Wisata berhasil diubah!", data: wisata})
 }
 
 async function deleteWisata(req, res) {
@@ -71,6 +78,11 @@ async function fetchWisata(req, res) {
 
     const wisatas = await Wisata.findAll({ where: { name: {[Op.like]: `%${name ? name : ""}%`}, status: 1}})
 
+    for (let i = 0; i < wisatas.length; i++) {
+        const wisata = wisatas[i];
+        wisatas[i].foto = env('PREFIX') + wisata.foto
+    }
+
     return res.status(200).json({data: wisatas})
 }
 
@@ -79,6 +91,8 @@ async function getWisata(req, res) {
 
     const wisata = await Wisata.findByPk(id_wisata)
     if (wisata == null || wisata.status == 0) return res.status(404).json({message: "Wisata tidak ditemukan"})
+
+    wisata.foto = env('PREFIX') + wisata.foto;
 
     return res.status(200).json({data: wisata})
 }

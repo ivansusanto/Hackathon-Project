@@ -9,6 +9,7 @@ const dictionary = {
     DB_NAME: process.env.DB_NAME,
     CLIENT_KEY: process.env.CLIENT_KEY,
     SERVER_KEY: process.env.SERVER_KEY,
+    PREFIX: process.env.PREFIX
 };
 
 module.exports = function env(key) {
