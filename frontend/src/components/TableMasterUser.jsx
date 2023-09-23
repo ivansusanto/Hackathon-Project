@@ -68,6 +68,12 @@ function Table() {
                                         </th>
                                         <th
                                             scope="col"
+                                            className="px-10 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            Email
+                                        </th>
+                                        <th
+                                            scope="col"
                                             className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                         >
                                             Username
@@ -102,24 +108,42 @@ function Table() {
                                                 <div className="flex items-center">
                                                     <div className="ml-4">
                                                         <div className="text-sm font-medium text-gray-900">{person.display_name}</div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                <div className="flex items-center">
+                                                    <div className="ml-4">
                                                         <div className="text-sm text-gray-500">{person.email}</div>
+                                                        
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="text-sm text-gray-900">{person.username}</div>
-                                                <div className="text-sm text-gray-500">{person.status}</div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                <span
-                                                    className="px-2 inline-flex text-xs leading-5
-                                                    font-semibold rounded-full bg-green-100 text-green-800"
-                                                >
-                                                    Active
-                                                </span>
+                                                {person.status?
+                                                    <span
+                                                        className="px-2 inline-flex text-xs leading-5
+                                                        font-semibold rounded-full bg-green-100 text-green-800"
+                                                    >
+                                                        Active
+                                                    </span>
+                                                    :
+                                                    <span
+                                                        className="px-2 inline-flex text-xs leading-5
+                                                        font-semibold rounded-full bg-red-100 text-green-800"
+                                                    >
+                                                        Inactive
+                                                    </span>
+                                                
+                                                }
+                                                
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {person.status}
+                                                {person.role}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {person.no_telp}
