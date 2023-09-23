@@ -58,7 +58,10 @@ function Login (){
   function submitHandler(e){
     if(!email || !username || !phone || !password || !confirmPassword || !name){
       alert("Ada field yang belum diisi")
-    }else{
+    }else if(password != confirmPassword){
+      alert("Password dan confirm password tidak sama")
+    }
+    else{
       const data = {
         email: email,
         username: username,
@@ -69,7 +72,11 @@ function Login (){
         role: 1
       }
       http.post("users/register", data).then((res) => {
-        console.log(res)
+        if(res.message != "User berhasil terdaftar"){
+          alert("Terdapat data invalid")
+        }else{
+
+        }
       })
     }
   }

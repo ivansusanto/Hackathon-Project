@@ -45,7 +45,8 @@ function Login (){
         if(res.message != "berhasil login"){
           alert("Username atau password salah")
         }else{
-          sessionStorage.setItem("token", res.message.token)
+          sessionStorage.setItem("token", res.token)
+          sessionStorage.setItem("display_name", res.data.display_name)
         }
       })
     }

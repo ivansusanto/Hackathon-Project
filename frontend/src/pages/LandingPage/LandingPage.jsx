@@ -15,7 +15,7 @@ function LandingPage(){
   return(
     <>
     <Nav/>
-    <img src={jumbo} alt="" className="absolute z-0"/>
+    <img src={jumbo} alt="" className="absolute z-0 w-screen"/>
     <div className="jumbotron text-white z-10 relative h-96 md:h-fit" >
       <div className=" 2xl:mt-96 xl:mt-64 xl:ms-24 lg:mt-52 lg:ms-16 md:mt-32 md:ms-12 mt-16 ms-8">
         <h1 className=" xl:text-6xl lg:text-4xl md:text-2xl font-bold">
@@ -32,8 +32,8 @@ function LandingPage(){
       </div>
     </div>
     
-    <div className="relative w-full mt-4 lg:mt-16 2xl:mt-20">
-      <div className="absolute text-white right-0">
+    <div className="relative w-full mt-4 lg:mt-16 2xl:mt-72">
+      <div className="absolute text-white right-40">
         <h1 className=" text-4xl font-bold">Top Vacation destination</h1>
         <div className=" no-scrollbar flex overflow-x-auto mt-4" style={{width: "800px"}}>
           <TopDest img={jumbo} title={"asd"}></TopDest>
