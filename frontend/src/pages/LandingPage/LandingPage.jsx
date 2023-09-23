@@ -17,7 +17,7 @@ function LandingPage(){
     <Nav/>
     <img src={jumbo} alt="" className="absolute z-0 w-screen"/>
     <div className="jumbotron text-white z-10 relative h-96 md:h-fit" >
-      <div className=" 3xl:mt-80 2xl:mt-40 xl:mt-64 xl:ms-24 lg:mt-52 lg:ms-16 md:mt-32 md:ms-12 mt-16 ms-8 bg-black w-1/2 p-5 rounded-2xl bg-opacity-50">
+      <div className=" 3xl:mt-80 2xl:mt-40 xl:mt-28 xl:ms-24 lg:mt-52 lg:ms-16 md:mt-32 md:ms-12 mt-16 ms-8 bg-black w-1/2 p-5 rounded-2xl bg-opacity-50">
         <h1 className=" xl:text-6xl lg:text-4xl md:text-2xl font-bold">
           WELCOME TO <br />
           SUMBERGAYAM
@@ -32,7 +32,7 @@ function LandingPage(){
       </div>
     </div>
     
-    <div className="relative w-full -mt-24 2xl:mt-52">
+    <div className="relative w-full -mt-24 2xl:mt-52 xl:mt-24">
       <div className="absolute text-white right-40">
         <h1 className=" text-4xl font-bold">Top Vacation destination</h1>
         <div className=" no-scrollbar flex overflow-x-auto mt-4" style={{width: "800px"}}>
