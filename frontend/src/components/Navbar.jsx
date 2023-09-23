@@ -2,12 +2,30 @@ import { useRef, useState } from "react";
 import "./navstyle.css";
 import logo from "/img/Logo-lebar.png"
 import burger from "/img/burger.png"
+import { Avatar } from "@mui/material";
+import { deepOrange } from '@mui/material/colors';
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+  Button
+} from '@chakra-ui/react'
 
 function Navbar (){
   const [navClick, setNavClick] = useState(false);
 
   function navClickHandler(){
     setNavClick(!navClick)
+  }
+
+  function logoutHandler(){
+    sessionStorage.clear()
+    window.location.reload()
   }
   return(
     <>
@@ -35,13 +53,13 @@ function Navbar (){
             </div>
           </div>
         </div> */}
-        <div className="left">
+        <div className="left z-10">
           <a href="/">
             <img src={logo} alt="" style={{height: "80px"}}/>
 
           </a>
         </div>
-        <div className="right hidden lg:block">
+        <div className="right hidden lg:block z-10">
           <ul className="flex align-middle text-xl">
             <li className="mt-2 me-16">
               <a href="/">
@@ -77,8 +95,26 @@ function Navbar (){
                 </li>
               </ul>
             </div>
-            <div className="profile hidden" style={{display: sessionStorage.getItem("token") ? "block" : "none"}}>
+            <div className="profile hidden me-6 z-10" style={{display: sessionStorage.getItem("token") ? "block" : "none"}}>
+              <Menu>
+                <MenuButton as={Button}>
+                  <Avatar
+                  sx={{ bgcolor: deepOrange[500] }}
+                  alt="Remy Sharp"
+                  src="/broken-image.jpg"
+                  >
+                    {sessionStorage.getItem("display_name") ? sessionStorage.getItem("display_name")[0] : ""}
+                  </Avatar>
+                </MenuButton>
+                <MenuList className=" bg-gray-100 rounded-xl p-4 w-48" >
+                  <a href="">
+                    <MenuItem className="btn bg-white mb-4">Profile</MenuItem>
 
+                  </a>
+                  <MenuItem className="btn btn-error" onClick={logoutHandler}>Logout</MenuItem>
+                </MenuList>
+              </Menu>
+            
             </div>
           </ul>
         </div>

@@ -76,6 +76,7 @@ function Login (){
           alert("Terdapat data invalid")
         }else{
           alert("Berhasil mendaftar")
+          window.location.href("/login")
         }
       })
     }
@@ -85,7 +86,7 @@ function Login (){
     <>
       <Navbar></Navbar>
       <div className=" h-screen overflow-hidden relative">
-    <img src={background} alt="" className="absolute z-0" />
+    <img src={background} alt="" className="absolute" style={{zIndex: "-1"}} />
         <div className="relative flex z-10 justify-center">
           <div className=" flex items-center justify-center h-screen">
             <div className="border-solid border-2 rounded-lg py-12 px-28 bg-white" style={{height: "600px", width: "1000px"}}>
