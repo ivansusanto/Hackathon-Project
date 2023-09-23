@@ -51,12 +51,12 @@ function LandingPage(){
         <div className=" no-scrollbar flex overflow-x-auto mt-4" style={{width: "800px"}}>
           {
             tops.map((top, idx) => {
-              return <TopDest img={top.foto} title={top.name}></TopDest>
+              return <TopDest img={top.foto} title={top.name} key={idx}></TopDest>
             })
           }
           {
             tops.map((top, idx) => {
-              return <TopDest img={top.foto} title={top.name}></TopDest>
+              return <TopDest img={top.foto} title={top.name} key={idx}></TopDest>
             })
           }
 
@@ -69,12 +69,12 @@ function LandingPage(){
         <div className=" no-scrollbar flex h-56 overflow-x-auto">
           {
             bundles.map((bundle, idx)=>{
-              return <Bundle img1={bundle.Bundle_Items[0].Wisatum.foto} img2={bundle.Bundle_Items[1].Wisatum.foto} title={bundle.name} price={bundle.price} priceBefore={bundle.normal_price} key={idx} ></Bundle>
+              return <Bundle id={bundle.id} img1={bundle.Bundle_Items[0].Wisatum.foto} img2={bundle.Bundle_Items[1].Wisatum.foto} title={bundle.name} price={bundle.price} priceBefore={bundle.normal_price} key={idx} ></Bundle>
             })
           }
           {
             bundles.map((bundle, idx)=>{
-              return <Bundle img1={bundle.Bundle_Items[0].Wisatum.foto} img2={bundle.Bundle_Items[1].Wisatum.foto} title={bundle.name} price={bundle.price} priceBefore={bundle.normal_price} key={idx} ></Bundle>
+              return <Bundle id={bundle.id} img1={bundle.Bundle_Items[0].Wisatum.foto} img2={bundle.Bundle_Items[1].Wisatum.foto} title={bundle.name} price={bundle.price} priceBefore={bundle.normal_price} key={idx} ></Bundle>
             })
           }
 

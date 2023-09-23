@@ -28,7 +28,6 @@ export default function ProfilePage(){
   }, [])
   
   function nameHandler(e){
-    console.log(e.target.value)
     setName(e.target.value)
   }
 
@@ -41,13 +40,12 @@ export default function ProfilePage(){
       display_name: name,
       no_telp: phone
     }
-    console.log(data)
     http.put("users/update", data, {
       headers:{
         Authorization: 'Bearer ' + sessionStorage.getItem("token")
       }
     }).then((res) => {
-     console.log(res)
+     alert("Berhasil menyimpan perubahan")
     })
   }
 
@@ -78,12 +76,12 @@ export default function ProfilePage(){
 
             <div className="mt-7">
               Nama pengguna
-            <Input placeholder='Nama pengguna' className="border rounded-md p-3 w-full" value={name} onChange={nameHandler}/>
+            <Input placeholder='Nama pengguna' className="border rounded-md p-3 w-full" value={name || ""} onChange={nameHandler}/>
 
             </div>
             <div className="mt-7">
               Nomor Telepon
-            <Input placeholder='Nomor telepon' className="border rounded-md p-3 w-full" value={phone} onChange={phoneHandler}/>
+            <Input placeholder='Nomor telepon' className="border rounded-md p-3 w-full" value={phone || ""} onChange={phoneHandler}/>
 
             </div>
 
