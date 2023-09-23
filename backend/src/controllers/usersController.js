@@ -75,8 +75,8 @@ async function loginUser(req, res) {
 }
 
 async function fetchUser(req, res) {
-    const user = await User.findByPk(req.user)
-    if (user.role != 0) return res.status(400).json({message: "Unauthorized"})
+    const master = await User.findByPk(req.user)
+    if (master.role != 0) return res.status(400).json({message: "Unauthorized"})
 
     const users = await User.findAll({where: {
         [Op.and]: [
@@ -89,6 +89,9 @@ async function fetchUser(req, res) {
 }
 
 async function getUser(req, res) {
+    const master = await User.findByPk(req.user)
+    if (master.role != 0) return res.status(400).json({message: "Unauthorized"})
+
     const { user_id } = req.params
     const user = await User.findByPk(user_id)
     if (user.role != 0) return res.status(400).json({message: "Unauthorized"})
@@ -97,16 +100,18 @@ async function getUser(req, res) {
 }
 
 async function updateUser(req, res) {
-    const { user_id } = req.params
-    const { display_name, no_telp } = req.body
-    
-    const user = await User.findByPk(user_id)
+    const master = await User.findByPk(req.user)
+    if (master.role != 0) return res.status(400).json({message: "Unauthorized"})
 
+    const { user_id } = req.params
+    const { display_name, no_telp, email, no_rek } = req.body    
+    const user = await User.findByPk(user_id)
     user.update({
         display_name: display_name,
         no_telp: no_telp,
+        email: email, 
+        no_rek: no_rek
     })
-
     user.reload()
     return res.status(201).json({message: "User berhasil diubah!", data: user})
 }
