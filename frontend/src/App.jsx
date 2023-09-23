@@ -14,6 +14,7 @@ import MasterBundlePage from './pages/AdminPage/MasterBundlePage';
 import MasterTransaksiPage from './pages/AdminPage/MasterTransaksiPage';
 import ProfilePage from './pages/ProfilePage';
 import { ItemSelectPage } from './pages/WisataPage/ItemSelectPage/ItemSelectPage';
+import BundlePage from './pages/BundlePage/BundlePage';
 
 const App = () => {
     return (
@@ -26,6 +27,7 @@ const App = () => {
                 <Route path="/wisata/:id" element={<ItemSelectPage />} />
                 <Route path="/acara" element={<AcaraPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/bundle/:id" element={<BundlePage />} />
                 <Route path="/admin/login" element={<LoginAdminPage />} />
                 <Route path="/admin/master-user" element={<MasterUserPage />} />
                 <Route path="/admin/master-wisata" element={<MasterWisataPage />} />
