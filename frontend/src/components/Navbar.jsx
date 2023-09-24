@@ -111,7 +111,11 @@ function Navbar (){
                     <MenuItem className="btn bg-white mb-4">Profile</MenuItem>
 
                   </a>
-                  <MenuItem className="btn btn-error" onClick={logoutHandler}>Logout</MenuItem>
+                  <a href="/master-wisata">
+                    <MenuItem className="btn bg-info mb-4">Kelola</MenuItem>
+
+                  </a>
+                  <MenuItem className="btn bg-red-500" onClick={logoutHandler}>Logout</MenuItem>
                 </MenuList>
               </Menu>
             
