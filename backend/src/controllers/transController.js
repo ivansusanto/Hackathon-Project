@@ -188,6 +188,14 @@ async function Payouting(){
     })
 }
 
+async function fetchTrans(req, res){
+    const master = await User.findByPk(req.user)
+    if (master.role != 0) return res.status(400).json({message: "Unauthorized"})
+
+    const transs = HTrans.findAll()
+    return res.status(200).json({data: transs})
+}
+
 module.exports = {
-    createTrans, getStatusTrans, updateTrans
+    createTrans, getStatusTrans, updateTrans, fetchTrans
 }

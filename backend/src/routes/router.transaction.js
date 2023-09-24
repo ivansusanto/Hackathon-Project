@@ -4,9 +4,10 @@ const AuthMiddleware = require('../middlewares/AuthMiddleware');
 const router = Router();
 
 const {
-    createTrans, getStatusTrans, updateTrans
+    createTrans, getStatusTrans, updateTrans, fetchTrans
 } = require('../controllers/transController.js');
 
+router.get('/', fetchTrans)
 router.post('/update', updateTrans)
 
 router.use(AuthMiddleware)
