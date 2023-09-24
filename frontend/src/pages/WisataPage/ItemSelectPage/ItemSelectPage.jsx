@@ -39,7 +39,7 @@ export const ItemSelectPage = () => {
       start_date: startTime,
       end_date: endTime,
     }
-    http.post('/transaction', data, {headers:{ Authorization: `Bearer ${sessionStorage.getItem('token')}`}}).then((res) => {
+    http.post('transaction', data, {headers:{ Authorization: `Bearer ${sessionStorage.getItem('token')}`}}).then((res) => {
       console.log(res.data);
       setTransaction(res.data)
       window.snap.pay(res.data.token)
